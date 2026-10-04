@@ -169,6 +169,20 @@ document.getElementById('open-all').addEventListener('click', () => document.que
 document.getElementById('close-all').addEventListener('click', () => document.querySelectorAll('details').forEach(d => d.open = false));
 </script>
 
-<script data-goatcounter="https://meditarisafari.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://meditarisafari.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script><script>
+(function(){
+  function send(name){ if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({path: name, title: name, event: true}); }
+  document.addEventListener('toggle', function(e){
+    var d = e.target; if (!d.open || d.tagName !== 'DETAILS') return;
+    var t = d.querySelector('summary .sec-title, summary .src-name, summary');
+    send('open: ' + (t ? t.textContent.trim().slice(0, 60) : 'box'));
+  }, true);
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+    send('link: ' + a.textContent.trim().slice(0, 60));
+  });
+})();
+</script>
+
 </body>
 </html>
