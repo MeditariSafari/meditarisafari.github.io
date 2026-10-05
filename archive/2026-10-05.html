@@ -167,6 +167,11 @@ footer { border-top: 1px solid var(--rule); padding-top: 1rem; display: flex; fl
 .links { overflow-wrap: anywhere; margin: 0; }
 .note { margin: 0; font-style: italic; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+/* Deeper Daive header as a red box, matching the date and quote boxes above. */
+details.sec.sec-lead > summary { background: var(--alert-bg) !important; }
+details.sec.sec-lead > summary .sec-title, details.sec.sec-lead > summary .sec-title .red-a { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 800; color: #ffffff !important; }
+details.sec.sec-lead > summary .dive-preview { color: rgba(255,255,255,0.85); }
+details.sec.sec-lead > summary::after { color: #ffffff; }
 </style>
 <div class="wrap">
   <header>
