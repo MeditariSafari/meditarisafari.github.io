@@ -9,7 +9,7 @@
 <title>A Deeper Daive</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Sans+Condensed:wght@500;600&family=Playfair+Display:ital,wght@1,400;1,900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Sans+Condensed:wght@500;600&family=Playfair+Display:ital,wght@1,400;1,900&family=Inter:wght@500;600;700;800&display=swap">
 <style>
 /* Layout: one narrow reading column at first light; every tradition folds shut so the morning reads as a list of doors. */
 :root {
@@ -111,6 +111,11 @@ ul.dive-keys strong { font-weight: 900; }
 .sec-lead > summary .sec-title { font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.03em; }
 .sec-lead > summary .sec-title { display: inline-block; background: var(--alert-bg); color: #fff; border-radius: 6px; padding: 0.15rem 0.6rem; }
 .sec-lead > summary .sec-title .red-a { color: #fff; }
+/* Red boxes: clean upright sans in pure white (Johnny, 2026-10-05). */
+.mass-summary, .church-tag, .church-tag *, .sec-lead > summary .sec-title { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif !important; font-style: normal !important; color: #ffffff !important; }
+.mass-summary { font-weight: 700 !important; font-size: 1.12rem !important; line-height: 1.4 !important; letter-spacing: -0.005em; }
+.church-tag { font-weight: 500; font-size: 0.95rem; }
+.church-tag strong { font-weight: 700; }
 details.sec.sec-lead > summary { padding: 1.1rem 2.6rem 1.1rem 1rem; background: var(--theme-bg); border-radius: 8px; }
 details.sec.sec-lead > summary::after { right: 1rem; top: 1rem; }
 details.sec.sec-five > summary::after { right: 1rem; top: 0.85rem; }
