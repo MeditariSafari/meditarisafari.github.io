@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}</style>
+</head>
+<body>
+<title>A Deeper Dave</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Sans+Condensed:wght@500;600&family=Playfair+Display:ital,wght@1,400;1,900&family=Inter:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: one narrow reading column at first light; every tradition folds shut so the morning reads as a list of doors. */
+:root {
+  --bg: #eef1f3;
+  --surface: #f8f9fa;
+  --fg: #1d2530;
+  --muted: #5b6672;
+  --question: #3d5f7c;
+  --rule: #d3d9de;
+  --accent: #8a5a12;
+  --accent-soft: #efe2cc;
+  --mass-bg: #dde6ee;
+  --group-bg: #ebd6b4;
+  --sources-bg: #dbe9d5;
+  --trad-bg: #d3e6dc;
+  --news-bg: #dbe8d2;
+  --mcc-bg: #e6e8cc;
+  --five-bg: #f6ead8;
+  --voices-bg: #d6e4e6;
+  --history-bg: #e4dccd;
+  --panel-bg: #e0e4e1;
+  --warn: #b3261e;
+  --alert-bg: #a8201a;
+  --theme-bg: #d3e0e6;
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --body: "Literata", Georgia, "Times New Roman", serif;
+  --label: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12171d; --surface: #1a2028; --fg: #e3e7eb; --muted: #9aa4ae; --question: #9fbdd6; --rule: #2c343e;
+    --accent: #e0b062; --accent-soft: #3a2f1f; --mass-bg: #263340; --group-bg: #42331d; --sources-bg: #253a2a; --trad-bg: #22382f; --news-bg: #273a28; --mcc-bg: #34371f; --five-bg: #3a2f22; --voices-bg: #22363a; --history-bg: #3a342a; --panel-bg: #1b2126; --warn: #ff8a80; --alert-bg: #9c1f19; --theme-bg: #22343b; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12171d; --surface: #1a2028; --fg: #e3e7eb; --muted: #9aa4ae; --question: #9fbdd6; --rule: #2c343e;
+  --accent: #e0b062; --accent-soft: #3a2f1f; --mass-bg: #263340; --group-bg: #42331d; --sources-bg: #253a2a; --trad-bg: #22382f; --news-bg: #273a28; --mcc-bg: #34371f; --five-bg: #3a2f22; --voices-bg: #22363a; --history-bg: #3a342a; --panel-bg: #1b2126; --warn: #ff8a80; --alert-bg: #9c1f19; --theme-bg: #22343b; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { font-size: 82%; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 13.9px; line-height: 1.6; }
+.wrap { max-width: 40rem; margin: 0 auto; padding-inline: 18px; padding-block: 2.2rem 3rem; display: flex; flex-direction: column; gap: 0.9rem; }
+header { display: flex; flex-direction: column; gap: 0.35rem; padding-bottom: 0.6rem; }
+.kicker { font-family: var(--label); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(1.45rem, 4.6vw, 1.95rem); line-height: 1.2; margin: 0; text-wrap: balance; }
+.masthead { display: flex; flex-direction: column; gap: 0.35rem; background: var(--accent-soft); padding: 1.1rem 1.1rem 1rem; margin-bottom: 0.3rem; border-radius: 10px 10px 0 0; border-bottom: 6px solid var(--fg); }
+.epigraph { display: flex; flex-direction: column; gap: 0.2rem; padding-bottom: 1rem; margin-bottom: 0.4rem; border-bottom: 3px solid var(--fg); }
+.attrib { font-family: var(--label); font-size: 0.85rem; letter-spacing: 0.06em; color: var(--muted); padding-left: 1rem; }
+.sub-h { font-family: var(--label); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0.6rem 0 0.5rem; }
+.corner-date { font-weight: 700; align-self: flex-end; font-family: var(--label); font-size: 0.78rem; letter-spacing: 0.05em; color: var(--muted); margin-bottom: -0.2rem; }
+.date { color: var(--question); font-size: 1rem; }
+.turn { font-family: var(--display); font-style: italic; font-size: 1.05rem; line-height: 1.45; margin: 0.4rem 0 0; color: var(--accent); text-wrap: balance; }
+.intro { font-family: var(--display); font-style: italic; font-size: 1.18rem; line-height: 1.45; margin: 0.4rem 0 0.2rem; max-width: 34rem; text-wrap: pretty; }
+.tools { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tools button { font-family: var(--label); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; background: none; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.8rem; cursor: pointer; }
+.tools button:hover { color: var(--fg); border-color: var(--muted); }
+details.sec { border-top: 1px solid var(--rule); }
+details.sec > summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.7rem; padding: 0.95rem 2rem 0.95rem 0; position: relative; }
+details summary::-webkit-details-marker { display: none; }
+details.sec > summary::after { content: "+"; position: absolute; right: 0.2rem; top: 0.8rem; font-family: var(--label); font-size: 1.35rem; color: var(--accent); transition: transform .2s; }
+details.sec[open] > summary::after { transform: rotate(45deg); }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.topline { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 0.4rem; }
+.topline .disclaimer { margin: 0; }
+.top-brand { font-family: var(--display); font-weight: 700; font-style: italic; font-size: 0.8rem; color: var(--warn); white-space: nowrap; }
+.disclaimer { margin: 0 0 0.4rem; text-align: left; font-family: var(--label); font-size: 0.66rem; font-weight: 600; color: var(--warn); }
+.mass-box { background: var(--mass-bg); border-radius: 8px; padding: 0.9rem 1rem; margin: 0.9rem 0; font-size: 1rem; }
+.mass-summary { display: block; margin-top: 1rem; padding: 0.9rem 1rem; border-radius: 8px; background: var(--alert-bg); color: #fff; font-family: 'Playfair Display', var(--display); font-style: italic; font-weight: 900; font-size: 1.2rem; line-height: 1.3; }
+.mass-refs { display: block; font-family: var(--display); font-style: italic; color: var(--accent); }
+.wiki-link { font-family: var(--label); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); text-decoration: none; border: 1px solid var(--rule); border-radius: 999px; padding: 0.05rem 0.5rem; }
+.src-home { align-self: flex-start; margin-top: 0.3rem; display: inline-block; }
+.wiki-link:hover { text-decoration: underline; }
+.mass-refs { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.15rem 0; }
+details.ref { display: inline-block; }
+details.ref > summary { list-style: none; cursor: pointer; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+details.ref > summary::-webkit-details-marker { display: none; }
+details.ref > summary::after { content: " ▾"; font-style: normal; font-size: 0.8em; }
+details.ref[open] { flex-basis: 100%; }
+details.ref[open] > summary::after { content: " ▴"; }
+.ref-pop { display: block; margin: 0.35rem 0 0.5rem; padding: 0.6rem 0.75rem; border-left: 3px solid var(--alert-bg); background: var(--panel-bg); border-radius: 4px; font-style: normal; color: var(--fg); font-family: var(--body, inherit); }
+.ref-about { display: block; margin-bottom: 0.4rem; }
+.ref-read { font-weight: 600; color: var(--alert-bg) !important; text-decoration: none !important; }
+.ref-sep { white-space: pre; }
+details.ref[open] + .ref-sep { display: none; }
+.mass-refs a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+.red-a { color: var(--warn); }
+li.has-thumb { overflow: hidden; }
+img.vw-thumb { float: left; width: 46px; height: 46px; object-fit: cover; object-position: center 20%; border-radius: 50%; margin: 0.15rem 0.6rem 0.3rem 0; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--rule); }
+details.sec.sec-five { border-top: 2px solid var(--fg); padding-top: 0.9rem; margin-bottom: 0.6rem; }
+details.sec.sec-five > summary { padding: 0.9rem 2.6rem 0.9rem 1rem; background: var(--five-bg); border-radius: 8px; }
+details.sec.sec-five > summary .sec-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.03em; }
+details.sec.sec-five > .sec-body { background: var(--five-bg); border-radius: 0 0 8px 8px; padding: 0.2rem 1rem 0.8rem; margin-top: -6px; }
+ul.dive-keys { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 1.2em; font-weight: 500; color: #111; margin: 0 0 1.3rem; padding: 1rem 1.1rem 1rem 2.1rem; background: #fff6c9; border-left: 5px solid var(--alert-bg); border-radius: 8px; line-height: 1.5; }
+ul.dive-keys li { margin: 0.4rem 0 0.8rem; }
+ul.dive-keys strong { font-weight: 800; color: var(--alert-bg); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) ul.dive-keys { background: #3a3418; color: #fff; } }
+:root[data-theme="dark"] ul.dive-keys { background: #3a3418; color: #fff; }
+.masthead-tag { align-self: flex-start; margin-top: 0.2rem; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 0.95rem; color: var(--fg); }
+.masthead-tag strong { font-weight: 600; }
+.church-tag { display: inline-block; background: var(--alert-bg); color: #fff; border-radius: 6px; padding: 0.15rem 0.6rem; }
+.church-tag strong { font-style: normal; }
+.mass-date { display: block; font-family: 'Playfair Display', var(--display); font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--muted); margin: -0.15rem 0 0.45rem; }
+.mass-label { display: block; font-family: var(--display); font-weight: 600; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.35rem; }
+.sec-title { font-family: var(--display); font-weight: 600; font-size: 1.02rem; }
+/* Red boxes: clean upright sans in pure white (Johnny, 2026-10-05). */
+.mass-summary, .church-tag, .church-tag * { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif !important; font-style: normal !important; color: #ffffff !important; }
+.mass-summary { font-weight: 700 !important; font-size: 1.12rem !important; line-height: 1.4 !important; letter-spacing: -0.005em; }
+.church-tag { font-weight: 500; font-size: 0.95rem; }
+.church-tag strong { font-weight: 700; }
+.sec-lead > summary .sec-title { font-family: var(--display); font-weight: 600; font-size: clamp(1.45rem, 4.6vw, 1.95rem); line-height: 1.2; color: var(--fg); text-transform: none; letter-spacing: 0; }
+details.sec.sec-lead > summary { padding: 1.1rem 2.6rem 1.1rem 1rem; background: var(--theme-bg); border-radius: 8px; }
+details.sec.sec-lead > summary::after { right: 1rem; top: 1rem; }
+details.sec.sec-five > summary::after { right: 1rem; top: 0.85rem; }
+details.sec.sec-group > summary { padding: 1.1rem 2.6rem 1.1rem 1rem; background: var(--sources-bg); border-radius: 8px; }
+details.sec.sec-group > summary::after { right: 1rem; top: 1rem; }
+details.sec-group { border-top: none; margin-top: 0.6rem; }
+details.sec-sources, details.sec-thread, details.sec-voices, details.sec-history { margin-top: 1rem; }
+details.sec.sec-group > summary { background: var(--trad-bg); }
+details.sec.sec-thread > summary { background: var(--news-bg); }
+details.sec.sec-sources > summary { background: var(--mcc-bg); }
+details.sec.sec-voices > summary { background: var(--voices-bg); }
+details.sec.sec-history > summary { background: var(--history-bg); }
+.sec-group > summary .sec-title { font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.03em; }
+.lower-panel { background: var(--panel-bg); border-radius: 12px; padding: 0.4rem 0.8rem 0.8rem; margin-top: 1rem; }
+.group-body { padding-left: 0.9rem; border-left: 2px solid var(--rule); }
+.group-body > details.sec:first-child { border-top: none; }
+.dive-preview { flex-basis: 100%; font-size: 0.95rem; line-height: 1.5; color: var(--muted); max-height: 4.5em; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, #000 25%, transparent); mask-image: linear-gradient(to bottom, #000 25%, transparent); }
+details[open] > summary > .dive-preview { display: none; }
+details.sec-lead > .sec-body { font-size: 0.92em; }
+details.sec-lead { border-top: 2px solid var(--fg); border-bottom: 2px solid var(--fg); padding: 0.9rem 0; margin-bottom: 0.6rem; }
+.sec-lead > summary .sec-sub { flex-basis: 100%; font-family: var(--display); font-style: italic; text-transform: none; letter-spacing: 0; font-size: 0.95rem; }
+.sec-sub { font-family: var(--label); font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); }
+.sec-body { padding-bottom: 1.1rem; min-width: 0; }
+.sec-body p { margin: 0 0 0.8rem; }
+.sec-body ul { margin: 0 0 0.8rem; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.sec-theme { background: var(--accent-soft); border-top: none !important; border-radius: 10px; padding-inline: 1rem; }
+.sec-theme > summary { flex-direction: column; align-items: flex-start !important; gap: 0.1rem !important; }
+.sec-label { font-family: var(--label); font-weight: 600; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.sec-theme .sec-title { font-size: 1.5rem; }
+.sub-drop { border-bottom: 1px dashed var(--rule); margin-bottom: 0.4rem; }
+.sub-drop > summary { list-style: none; cursor: pointer; position: relative; padding: 0.4rem 1.6rem 0.5rem 0; margin: 0; }
+.sub-drop > summary::after { content: "+"; position: absolute; right: 0.2rem; top: 0.15rem; font-size: 1.1rem; color: var(--accent); transition: transform .2s; }
+.sub-drop[open] > summary::after { transform: rotate(45deg); }
+.src { border-top: 1px dashed var(--rule); }
+.src:first-of-type { border-top: none; }
+.src > summary, .src-flat { list-style: none; cursor: pointer; display: grid; grid-template-columns: 1.8rem 1fr; gap: 0.6rem; padding: 0.7rem 0; }
+.src-flat { cursor: default; }
+.src-n { font-family: var(--label); font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; padding-top: 0.15rem; }
+.src-head { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.src-name { font-weight: 600; }
+.src-meta { font-family: var(--label); font-size: 0.82rem; color: var(--muted); }
+.src-gist, .src-flat-text { color: var(--muted); font-size: 0.97rem; }
+.src[open] .src-gist { color: var(--fg); }
+.src-body { padding: 0 0 0.6rem 2.4rem; }
+a { color: var(--accent); text-underline-offset: 2px; }
+footer { border-top: 1px solid var(--rule); padding-top: 1rem; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.88rem; color: var(--muted); }
+.foot-label { font-family: var(--label); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.75rem; margin-right: 0.3rem; }
+.links { overflow-wrap: anywhere; margin: 0; }
+.note { margin: 0; font-style: italic; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+/* Deeper Daive header as a red box with white Inter lettering (live page edit, 2026-10-05). */
+details.sec.sec-lead > summary { background: var(--alert-bg) !important; }
+details.sec.sec-lead > summary .sec-title, details.sec.sec-lead > summary .sec-title .red-a { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 800; color: #ffffff !important; }
+/* On the red Deeper Dave box, red letters would vanish, so its A's and I's show in gold (2026-10-15). */
+details.sec.sec-lead > summary .sec-title .red-a { color: #ffd54f !important; }
+details.sec.sec-lead > summary .dive-preview { color: rgba(255,255,255,0.85); }
+details.sec.sec-lead > summary::after { color: #ffffff; }
+a.mass-summary-link { text-decoration: none !important; }
+a.mass-summary-link:hover { filter: brightness(1.08); }
+.summary-credit { display: block; margin-top: 0.5rem; font-weight: 500; font-size: 0.85rem; text-decoration: underline; text-underline-offset: 2px; }
+.box-date { position: absolute; top: 0.3rem; right: 0.9rem; font-family: 'Inter', system-ui, sans-serif; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.03em; color: var(--muted); white-space: nowrap; }
+details.sec-five > summary, details.sec-lead > summary, details.sec-group > summary { padding-top: 1.35rem !important; }
+details.sec-five > summary::after, details.sec-lead > summary::after, details.sec-group > summary::after { top: 1.3rem !important; }
+details.sec.sec-lead > summary .box-date { color: rgba(255,255,255,0.85); }
+.mass-box { position: relative; padding-top: 1.4rem !important; }
+</style>
+<div class="wrap">
+  <header>
+    <div class="topline"><p class="disclaimer">This site and its name are under constant renovation.</p><span class="top-brand">The Meditari Safari</span></div>
+  <div class="masthead">
+      <span class="corner-date">Saturday, November 7, 2026</span>
+      <h1><span class="red-a">A</span> DEEPER D<span class="red-a">A</span>VE</h1>
+      <span class="masthead-tag"><strong>An exploration of human wisdom starting with today's lectionary.</strong></span>
+    </div>
+    <div class="tools"><button type="button" id="open-all">Open all</button><button type="button" id="close-all">Close all</button></div>
+  </header>
+  <div class="mass-box"><span class="box-date">November 7th, 2026</span><span class="mass-refs"><details class="ref"><summary>Psalm 78:1–7</summary><div class="ref-pop"><span class="ref-about"><strong>Old Testament</strong>, the Book of Psalms (a psalm of Asaph). A call to teach each generation God's deeds "so that they should set their hope in God."</span><a class="ref-read" href="https://www.biblegateway.com/passage/?search=Psalm+78%3A1-7&amp;version=NRSVUE" target="_blank" rel="noopener">Read the passage ↗</a></div></details><span class="ref-sep"> · </span><details class="ref"><summary>Joshua 20:1–9</summary><div class="ref-pop"><span class="ref-about"><strong>Old Testament</strong>, the Book of Joshua. Six towns, three on each side of the Jordan, are named as places of refuge where someone guilty of accidental killing can flee from revenge until a trial is held.</span><a class="ref-read" href="https://www.biblegateway.com/passage/?search=Joshua+20%3A1-9&amp;version=NRSVUE" target="_blank" rel="noopener">Read the passage ↗</a></div></details><span class="ref-sep"> · </span><details class="ref"><summary>Matthew 24:1–14</summary><div class="ref-pop"><span class="ref-about"><strong>New Testament</strong>, the Gospel of Matthew. Leaving the Temple, Jesus foretells its destruction and warns his disciples of wars, false messiahs and persecution, urging them to endure.</span><a class="ref-read" href="https://www.biblegateway.com/passage/?search=Matthew+24%3A1-14&amp;version=NRSVUE" target="_blank" rel="noopener">Read the passage ↗</a></div></details></span><span class="mass-summary">“God sets up six cities of refuge where anyone who has killed by accident can be safe until a fair trial. Jesus warns of hard times and calls his followers to endure without letting love grow cold.”</span></div><details class="sec sec-five" id="five-minute-version"><summary><span class="box-date">November 7th, 2026</span><span class="sec-title">The f<span class="red-a">i</span>ve-m<span class="red-a">i</span>nute vers<span class="red-a">i</span>on</span></summary><div class="sec-body"><p><strong>The readings:</strong> In the ancient world, if someone killed a person, even by accident, the victim's family had the right to take revenge. God tells Joshua to set aside six cities of refuge, spread across the land so one is always within reach. Anyone who has killed by accident can run there, stand at the city gate, and be taken in and protected until a fair trial. The cities are open "for all the Israelites and for the aliens residing among them." In Matthew, Jesus looks at the great Temple and says it will be torn down. Hard times are coming, he warns: wars, deception, and love growing cold. But "the one who endures to the end will be saved."</p>
+<p><strong>What it means:</strong> God built mercy into the law. In a world ruled by revenge, the cities of refuge said: there must be a safe place, and a fair hearing, before anyone pays with their life. The question for us is whether we can be that kind of place for others: somewhere a person who has made a terrible mistake can run to, and find safety instead of vengeance. And when hard times come, Jesus asks us not to let our love grow cold.</p>
+<p><strong>Across the traditions:</strong> the same truth, in other words.</p>
+<ul><li><strong>Marcus Aurelius:</strong> "The best way of avenging thyself is not to become like the wrong doer." (<em>Meditations</em> 6.6, Long.)</li><li><strong>Buddha:</strong> He taught that hatred is never ended by hatred, but only by love (<em>Dhammapada</em> 5, paraphrased).</li><li><strong>Judaism:</strong> The Talmud teaches that roads to the cities of refuge were kept wide and marked with signs saying "Refuge" (Makkot 10b, paraphrased).</li><li><strong>Islam:</strong> The Qur'an teaches that the recompense of an evil is an evil like it, but whoever pardons and makes peace, their reward is with God (42:40, paraphrased).</li></ul>
+<p><strong>Carry it today:</strong> Who needs you to be a place of refuge?</p></div></details><details class="sec sec-lead" id="today-s-theme-in-christianity"><summary><span class="box-date">November 7th, 2026</span><span class="sec-title"><span class="red-a">A</span> DEEPER D<span class="red-a">A</span>VE</span><span class="dive-preview">Cities of refuge: Six safe towns spread across the land. At the gate: The one who flees tells their story and is taken in. For the alien too: Refuge is open to foreigners as well as Israelites. Love grown cold: Jesus warns that hard times can freeze the heart. This week Israel crossed the Jordan, took Jericho, and rene</span></summary><div class="sec-body"><details class="sub-drop"><summary class="sub-h">Today's readings</summary><div class="sub-drop-body"><ul><li><strong>Protestant (RCL):</strong> Psalm 78:1–7 · Joshua 20:1–9 · Matthew 24:1–14. God tells Joshua, "Say to the Israelites: Appoint the cities of refuge, of which I spoke to you through Moses, so that anyone who kills a person without intent or by mistake may flee there; they shall be for you a refuge from the avenger of blood." "These were the cities designated for all the Israelites and for the aliens residing among them," so that no one would die by the avenger's hand "until there was a trial before the congregation." In Matthew, Jesus warns that the Temple will fall: "not one stone will be left here upon another." "You will hear of wars and rumors of wars; see that you are not alarmed." "Because of the increase of lawlessness, the love of many will grow cold. But the one who endures to the end will be saved."</li><li><strong>Catholic:</strong> Saturday of the 31st Week in Ordinary Time; optional memorial of the Blessed Virgin Mary. Philippians 4:10–19 · Psalm 112 ("Blessed the man who fears the Lord") · Luke 16:9–15. "You cannot serve God and mammon."</li><li><strong>Episcopal:</strong> Commemoration of <strong>Willibrord</strong> (658–739), the English monk who became the first Archbishop of Utrecht and the "Apostle of the Frisians." Morning Prayer: Psalms 75, 76 · Sirach 51:1–12 · Revelation 18:1–14 · Luke 14:1–11.</li><li><strong>Orthodox:</strong> 2 Corinthians 8:1–5 · Luke 9:1–6 (Jesus sends out the Twelve). Commemoration of the <strong>33 Martyrs of Melitene</strong> (3rd century) and <strong>St. Lazarus the Wonderworker of Mount Galesius</strong> (died 1053), a pillar-dweller near Ephesus.</li><li><strong>Divine Office:</strong> Saturday, Week 3. Morning Prayer: Psalm 119:145–152 ("You, O Lord, are close; your ways are truth"), the Canticle of Wisdom 9 ("Lord, let your wisdom be with me to help me and to work with me"), Psalm 117 ("The truth of the Lord will stand firm for ever"). Benedictus antiphon: "Give your light, Lord, to those who sit in darkness and in the shadow of death."</li><li><strong>Rosary:</strong> Joyful Mysteries (Saturday).</li><li><strong>Moravian Watchword:</strong> Psalm 104:4, "You make the winds your messengers, fire and flame your ministers." Doctrinal text: Matthew 28:2, the earthquake and the angel at the empty tomb.</li><li>Saturday after the 22nd Sunday after Pentecost (Proper 26, Year A). Tomorrow's RCL readings (Proper 27A): Joshua 24:1–3a, 14–25 · Psalm 78:1–7 · 1 Thessalonians 4:13–18 · Matthew 25:1–13 ("choose this day whom you will serve," and the wise and foolish bridesmaids).</li></ul></div></details><h3 class="sub-h">The theme</h3><ul class="dive-keys"><li><strong>Cities of refuge:</strong> Six safe towns spread across the land.</li><li><strong>At the gate:</strong> The one who flees tells their story and is taken in.</li><li><strong>For the alien too:</strong> Refuge is open to foreigners as well as Israelites.</li><li><strong>Love grown cold:</strong> Jesus warns that hard times can freeze the heart.</li></ul>
+<p>This week Israel crossed the Jordan, took Jericho, and renewed the covenant. Today, the law builds in mercy: places of refuge for those who need them.</p>
+<p><strong>1. Appoint the Cities of Refuge</strong></p>
+<p>"Say to the Israelites: Appoint the cities of refuge, of which I spoke to you through Moses."</p>
+<ul><li><strong>Promised long before:</strong> Moses had commanded these cities (Numbers 35; Deuteronomy 19). Now they become real places.</li><li><strong>Within reach:</strong> Three on each side of the Jordan, so no one is too far from safety.</li></ul>
+<p><strong>2. Without Intent or By Mistake</strong></p>
+<p>"So that anyone who kills a person without intent or by mistake may flee there; they shall be for you a refuge from the avenger of blood."</p>
+<ul><li><strong>Intent matters:</strong> The law distinguishes accident from murder. Justice looks at the heart.</li><li><strong>Breaking the cycle:</strong> Blood feuds could go on for generations. Refuge stops the spiral.</li></ul>
+<p><strong>3. At the Entrance of the Gate</strong></p>
+<p>"The slayer shall flee to one of these cities and shall stand at the entrance of the gate of the city," and explain the case to the elders, who take them in.</p>
+<ul><li><strong>Telling the truth:</strong> Refuge begins with honest confession at the gate.</li><li><strong>Taken in:</strong> The elders give the person a place to live among them.</li></ul>
+<p><strong>4. For the Aliens Too</strong></p>
+<p>"These were the cities designated for all the Israelites and for the aliens residing among them."</p>
+<ul><li><strong>No borders on mercy:</strong> Foreigners have the same right to refuge.</li><li><strong>Until a trial:</strong> Refuge isn't escape from justice; it's protection until justice can be fair.</li></ul>
+<p><strong>5. Love Must Not Grow Cold</strong></p>
+<p>Jesus, leaving the Temple, foresees a time of upheaval: "Because of the increase of lawlessness, the love of many will grow cold. But the one who endures to the end will be saved." The two readings meet here. In a violent world, God made room for mercy. In the hardest times, Jesus asks his followers to keep their love warm. Christians have long seen Christ himself as our city of refuge, and Hebrews speaks of believers taking refuge in God's promise (6:18). The church at its best becomes a city of refuge: a place where people who have done wrong, or been wronged, can run and be safe.</p><details class="sub-drop sub-christian"><summary class="sub-h">For Christians today</summary><div class="sub-drop-body"><p>The cities of refuge have shaped Christian thinking on mercy, justice and sanctuary.</p>
+<ul><li><strong>The oldest readings:</strong> The fathers saw the cities of refuge as a figure of Christ, to whom sinners flee for safety. Hebrews 6:18 uses the language of fleeing for refuge.</li><li><strong>Sanctuary:</strong> In medieval Europe, churches could offer sanctuary to fugitives, an idea rooted partly in the cities of refuge. Some churches today offer sanctuary to immigrants facing deportation.</li><li><strong>Catholic:</strong> Catholic teaching on restorative justice and opposition to the death penalty draws on the idea that justice must leave room for mercy.</li><li><strong>Protestant and evangelical:</strong> Many churches run ministries for people leaving prison, addiction or abuse, often described as places of refuge.</li><li><strong>Live debates today:</strong> How churches should balance sanctuary, law and justice is a live and debated question.</li></ul>
+<p><strong>Carry it today:</strong> Offer someone who has failed a safe place instead of judgment.</p></div></details></div></details><div class="lower-panel"><details class="sec sec-group" id="traditions"><summary><span class="box-date">November 7th, 2026</span><span class="sec-title">How <span class="red-a">i</span>t rel<span class="red-a">a</span>tes to tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on<span class="red-a">a</span>l rel<span class="red-a">i</span>g<span class="red-a">i</span>ons</span><span class="dive-preview">Hindu &amp; Jain Tradition Today's readings through Hindu and Jain eyes: light in darkness. The Hindu lens: Today is Kali Chaudash (also called Naraka Chaturdashi), the night before Diwali, remembering Krishna's victory over the demon Narakasura and the freeing of his captives. Lamps are lit to drive away darkness. Diwali </span></summary><div class="sec-body group-body"><details class="sec" id="hindu-jain-tradition"><summary><span class="sec-title">H<span class="red-a">i</span>ndu &amp; J<span class="red-a">a</span><span class="red-a">i</span>n Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Hinduism" target="_blank" rel="noopener">Hindu wiki ↗</a><a class="wiki-link" href="https://en.wikipedia.org/wiki/Jainism" target="_blank" rel="noopener">Jain wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through Hindu and Jain eyes: light in darkness.</em></p>
+<ul><li><strong>The Hindu lens:</strong> Today is <strong>Kali Chaudash</strong> (also called Naraka Chaturdashi), the night before Diwali, remembering Krishna's victory over the demon Narakasura and the freeing of his captives. Lamps are lit to drive away darkness. <strong>Diwali</strong> is tomorrow, Sunday, November 8.</li><li><strong>The Jain lens:</strong> Jains honor <em>ahimsa</em>, non-harming, above all. Even accidental harm is taken seriously, and Jains practice <em>kshamapana</em>, asking and granting forgiveness.</li></ul>
+<p>Today is <strong>Krishna Trayodashi</strong> (ending at 10:47 AM India time), then <strong>Chaturdashi</strong>, with the moon moving from <strong>Hasta</strong> into <strong>Chitra</strong> (per Indian calendars; exact Chicago times couldn't be confirmed).</p>
+<p><strong>What the words mean</strong> (all Sanskrit):</p>
+<ul><li><strong>Ahimsa:</strong> "non-harming."</li><li><strong>Kshamapana:</strong> "asking forgiveness."</li><li><strong>Chaturdashi:</strong> "the fourteenth."</li><li><strong>Chitra:</strong> "bright, brilliant."</li></ul></div></details><details class="sec" id="sikh-tradition"><summary><span class="sec-title">S<span class="red-a">i</span>kh Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Sikhism" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through a Sikh lens: sanctuary for all.</em></p>
+<ul><li><strong>Sanctuary:</strong> The Gurus taught that the gurdwara is open to everyone in need of shelter, food or protection, regardless of faith.</li><li><strong>Bandi Chhor Divas:</strong> Tomorrow Sikhs celebrate <strong>Bandi Chhor Divas</strong>, the "Day of Liberation," when Guru Hargobind was freed from prison along with 52 imprisoned kings. It falls on Diwali.</li></ul>
+<p>Hukamnama (the verse drawn each morning from the Guru Granth Sahib at the Golden Temple and read by Sikhs worldwide): Ang 946, Raag Raamkalee, by Guru Nanak (from the <em>Sidh Gosht</em>, his dialogue with the yogis). "In egotism, the world was formed, O man; forgetting the Naam, it suffers and dies." (SikhNet's English.) Echoes Jesus' warning that the world's grandeur passes.</p></div></details><details class="sec" id="islamic-tradition"><summary><span class="sec-title"><span class="red-a">I</span>sl<span class="red-a">a</span>m<span class="red-a">i</span>c Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Islam" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through an Islamic lens: mercy over revenge.</em></p>
+<ul><li><strong>Pardon:</strong> The Qur'an allows just recompense, but praises those who pardon and make peace (42:40, paraphrased).</li><li><strong>Sanctuary:</strong> The Qur'an calls the Kaaba a place of safety for all who enter (3:97, paraphrased).</li></ul>
+<p>27 Jumada al-Ula 1448 (may differ by a day where the moon is sighted locally).</p></div></details><details class="sec" id="jewish-tradition"><summary><span class="sec-title">Jew<span class="red-a">i</span>sh Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Judaism" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through a Jewish lens: the cities of refuge.</em></p>
+<ul><li><strong>Wide roads:</strong> The Talmud teaches that roads to the cities of refuge were kept wide, in good repair, and marked with signs reading "Refuge" (Makkot 10b, paraphrased).</li><li><strong>Torah study:</strong> The Talmud also says a student who fled there should have his teacher go with him, so he could keep learning (Makkot 10a, paraphrased).</li></ul>
+<p>27 Cheshvan 5787. <strong>Shabbat Chayei Sarah</strong>. Havdalah in Chicago tonight at 5:21 PM.</p>
+<ul><li><strong>Torah:</strong> This week's portion is <strong>Chayei Sarah</strong> (Genesis 23:1–25:18): Abraham buys a burial cave for Sarah, and his servant finds Rebekah at the well. Haftarah: 1 Kings 1:1–31. All movements read the same portion; many Conservative and Reform congregations read part of it on a triennial cycle.</li><li><strong>Daily prayers:</strong> Shabbat services with the full Torah reading. Conservative and Reform follow the same.</li><li><strong>Study cycles:</strong> Daf Yomi (one page of Talmud a day, worldwide) Bekhorot 50 · Tehillim for the 27th of the month: Psalms 120–134 · Rambam: Laws of Forbidden Relations, ch. 19.</li></ul></div></details><details class="sec" id="buddhist-tradition"><summary><span class="sec-title">Buddh<span class="red-a">i</span>st Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Buddhism" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through a Buddhist lens: refuge.</em></p>
+<ul><li><strong>The Three Refuges:</strong> Buddhists "take refuge" in the Buddha, the Dharma (teaching) and the Sangha (community), the same word as Joshua's cities.</li><li><strong>Angulimala:</strong> The Buddha took in Angulimala, a murderer, who became a monk and a saint (<em>Majjhima Nikaya</em> 86, paraphrased). No one is beyond refuge.</li></ul>
+<p>No uposatha today. Next one: the new moon on Monday, November 9 (per the Wat Metta calendar).</p></div></details><details class="sec" id="stoicism"><summary><span class="sec-title">Sto<span class="red-a">i</span>c<span class="red-a">i</span>sm</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Stoicism" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><strong>What is Stoicism?</strong> A philosophy founded by Zeno of Citium around 300 BC in Athens, named for the painted porch (<em>stoa</em>) where he taught. Its most famous teachers are Epictetus, born into slavery; Seneca, a Roman statesman; and the emperor Marcus Aurelius. The Stoics taught that we can't control events, only our judgments and choices. Their four virtues are wisdom, courage, justice and self-control.</p>
+<p>"The best way of avenging thyself is not to become like the wrong doer." (Marcus Aurelius, <em>Meditations</em> 6.6, Long translation.) One sentence from an emperor who had every power to take revenge. The cities of refuge broke the cycle of vengeance by law. Marcus breaks it inside: refuse to become the one who wronged you.</p></div></details><details class="sec" id="bah-tradition"><summary><span class="sec-title">B<span class="red-a">a</span>há'í Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Bah%C3%A1%CA%BC%C3%AD_Faith" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through a Bahá'í lens: justice and mercy.</em></p>
+<ul><li><strong>Justice:</strong> Bahá'u'lláh wrote that the best beloved of all things in God's sight is justice (<em>Hidden Words</em>, Arabic no. 2, paraphrased).</li><li><strong>Forgiveness:</strong> 'Abdu'l-Bahá taught that individuals should forgive, while society must still uphold justice (paraphrased).</li></ul>
+<p>4 Qudrat 183 B.E., the fourth day of the month of Power. (B.E. means "Bahá'í Era," counted from 1844.)</p></div></details></div></details><details class="sec sec-group sec-history" id="historical-context-what-we-know"><summary><span class="box-date">November 7th, 2026</span><span class="sec-title">H<span class="red-a">i</span>stor<span class="red-a">i</span>c<span class="red-a">a</span>l context: wh<span class="red-a">a</span>t we know</span><span class="dive-preview">The time. Joshua is set in the late 13th century BC; Matthew wrote around AD 80–90, after the Temple's destruction in AD 70. What scholars broadly agree on. The cities of refuge reflect an effort to limit blood vengeance by giving accused killers asylum and a hearing. Similar asylum practices existed at altars and shri</span></summary><div class="sec-body"><p><strong>The time.</strong> Joshua is set in the late 13th century BC; Matthew wrote around AD 80–90, after the Temple's destruction in AD 70.</p>
+<p><strong>What scholars broadly agree on.</strong> The cities of refuge reflect an effort to limit blood vengeance by giving accused killers asylum and a hearing. Similar asylum practices existed at altars and shrines in the ancient world (1 Kings 1:50). Matthew 24 reflects the trauma of the Temple's fall.</p>
+<p><strong>What it meant then.</strong> For Israel, the cities limited revenge and made justice more fair. For Matthew's community, Jesus' words helped them face the loss of the Temple and persecution.</p>
+<p><strong>The allegorical readings.</strong> The fathers read the six cities as Christ, the refuge of sinners.</p>
+<p><strong>What's debated or unknown.</strong> Whether the cities of refuge functioned in practice, or mainly as an ideal, is debated.</p></div></details><details class="sec sec-group sec-voices" id="voices-of-wisdom"><summary><span class="box-date">November 7th, 2026</span><span class="sec-title">Vo<span class="red-a">i</span>ces of W<span class="red-a">i</span>sdom</span><span class="dive-preview">Joseph Campbell : He taught that the hero often finds sanctuary in a sacred place before the next trial. (Paraphrased.) Cities of refuge. Eckhart Tolle : He teaches that forgiveness means letting go of the grievance the ego clings to. (Our summary of his ideas, not his words.) Breaking the cycle. Thich Nhat Hanh : He t</span></summary><div class="sec-body"><ul><li><strong><a href="https://en.wikipedia.org/wiki/Joseph_Campbell" target="_blank" rel="noopener">Joseph Campbell</a>:</strong> He taught that the hero often finds sanctuary in a sacred place before the next trial. (Paraphrased.) Cities of refuge.</li><li><strong><a href="https://en.wikipedia.org/wiki/Eckhart_Tolle" target="_blank" rel="noopener">Eckhart Tolle</a>:</strong> He teaches that forgiveness means letting go of the grievance the ego clings to. (Our summary of his ideas, not his words.) Breaking the cycle.</li><li><strong><a href="https://en.wikipedia.org/wiki/Thich_Nhat_Hanh" target="_blank" rel="noopener">Thich Nhat Hanh</a>:</strong> He taught that when someone makes us suffer, it is because they are suffering deeply. (Paraphrased.) Mercy for the slayer.</li><li><strong><a href="https://en.wikipedia.org/wiki/George_Gurdjieff" target="_blank" rel="noopener">Gurdjieff</a>:</strong> He taught that we must learn to see others' weaknesses as like our own. (Paraphrased.) Without intent.</li><li><strong><a href="https://en.wikipedia.org/wiki/Tao_Te_Ching" target="_blank" rel="noopener">Tao Te Ching</a>:</strong> It says to repay injury with goodness. (Ch. 63, paraphrased.) Refuge from revenge.</li><li><strong><a href="https://en.wikipedia.org/wiki/Martin_Luther_King_Jr." target="_blank" rel="noopener">Martin Luther King Jr.</a>:</strong> He said darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that. (<em>Strength to Love</em>, paraphrased.) Love grown cold.</li><li><strong><a href="https://en.wikipedia.org/wiki/Confucius" target="_blank" rel="noopener">Confucius</a>:</strong> He taught to repay injury with justice and kindness with kindness. (Analects 14.34, paraphrased.) Until a fair trial.</li><li><strong><a href="https://en.wikipedia.org/wiki/Nelson_Mandela" target="_blank" rel="noopener">Nelson Mandela</a>:</strong> He said resentment is like drinking poison and hoping it will kill your enemies. (Attributed, paraphrased.) The avenger.</li><li><strong><a href="https://en.wikipedia.org/wiki/Marcus_Aurelius" target="_blank" rel="noopener">Marcus Aurelius</a>:</strong> "The best way of avenging thyself is not to become like the wrong doer." (<em>Meditations</em> 6.6, Long translation.) No revenge.</li><li><strong><a href="https://en.wikipedia.org/wiki/Ram_Dass" target="_blank" rel="noopener">Ram Dass</a>:</strong> He taught that we are all just walking each other home. (Paraphrased.) Refuge for one another.</li><li><strong><a href="https://en.wikipedia.org/wiki/The_Buddha" target="_blank" rel="noopener">Buddha</a>:</strong> He taught that hatred is never ended by hatred, but only by love. (<em>Dhammapada</em> 5, paraphrased.) Ending the feud.</li><li><strong><a href="https://en.wikipedia.org/wiki/Bhagavad_Gita" target="_blank" rel="noopener">Bhagavad Gita</a>:</strong> It praises the one who is free of hatred toward all beings, friendly and compassionate. (12:13, paraphrased.) Mercy.</li><li><strong><a href="https://en.wikipedia.org/wiki/Gregory_of_Nyssa" target="_blank" rel="noopener">Gregory of Nyssa</a>:</strong> He taught that God's justice always aims at healing. (<em>Great Catechism</em>, paraphrased.) Mercy and justice.</li><li><strong><a href="https://en.wikipedia.org/wiki/Rumi" target="_blank" rel="noopener">Rumi</a>:</strong> He wrote of a field beyond ideas of wrongdoing and rightdoing, where we can meet. (Attributed, paraphrased.) A place of refuge.</li><li><strong><a href="https://en.wikipedia.org/wiki/Desert_Fathers" target="_blank" rel="noopener">Desert Fathers</a>:</strong> Abba Moses refused to judge a brother, carrying a leaking jug of sand to show his own sins pouring out behind him. (Paraphrased.) Mercy for the guilty.</li><li><strong><a href="https://en.wikipedia.org/wiki/Kahlil_Gibran" target="_blank" rel="noopener">Kahlil Gibran</a>:</strong> He wrote that the guilty is often the victim of the injured. (<em>The Prophet</em>, "On Crime and Punishment," paraphrased.) Without intent.</li><li><strong><a href="https://en.wikipedia.org/wiki/Viktor_Frankl" target="_blank" rel="noopener">Viktor Frankl</a>:</strong> He wrote that no one has the right to do wrong, even if wrong has been done to them. (<em>Man's Search for Meaning</em>, paraphrased.) Breaking the cycle.</li><li><strong><a href="https://en.wikipedia.org/wiki/Alan_Watts" target="_blank" rel="noopener">Alan Watts</a>:</strong> He taught that we suffer most from our own ideas of who deserves what. (Paraphrased.) Judgment.</li><li><strong>Verse &amp; Voice:</strong> (from one year ago, November 7, 2025) John 21:17, Jesus asking Peter a third time, "Do you love me?" and saying, "Feed my sheep," paired with Joni Mitchell's song "Banquet" (1972), which pictures a feast where some get the best portions and others get nothing (summarized; lyrics not quoted). Love that doesn't grow cold.</li><li><strong>SSJE, Inward/Outward, Pray As You Go, AA:</strong> SSJE's "Peacemakers" calls us to be reconcilers, "not instigators of conflict and division, mistrust and hatred": the work of refuge. Inward/Outward's "Foolish and Wise" says we can't rely on others to tend our inner life for us. Pray As You Go offers its Saturday Examen, "A treasure hidden." AA's "Let Go and Let God" asks God to release the worries we keep chasing.</li></ul></div></details><details class="sec sec-group sec-thread" id="daily-sources"><summary><span class="box-date">November 7th, 2026</span><span class="sec-title">Newsletter d<span class="red-a">a</span><span class="red-a">i</span>ly bre<span class="red-a">a</span>kdowns</span><span class="dive-preview">1 Richard Rohr / CAC (couldn't confirm today; the site's meditation pages didn't load, eleventh day running.) Read &amp; subscribe ↗ 2 SSJE "Brother, Give Us a Word": "Peacemakers" (Br. David Vryhof; yesterday's word, since none is posted today) Christians are called to be reconcilers, he writes, "not instigators of confli</span></summary><div class="sec-body"><div class="src src-flat"><span class="src-n">1</span><div class="src-head"><span class="src-name">Richard Rohr / CAC</span> <span class="src-flat-text">(couldn't confirm today; the site's meditation pages didn't load, eleventh day running.)</span><a class="wiki-link src-home" href="https://cac.org/daily-meditations/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></div></div><details class="src"><summary><span class="src-n">2</span><span class="src-head"><span class="src-name">SSJE "Brother, Give Us a Word": "Peacemakers"</span><span class="src-meta">(Br. David Vryhof; yesterday's word, since none is posted today)</span><span class="src-gist">Christians are called to be reconcilers, he writes, "not instigators of conflict and division, mistrust and hatred." A city of refuge is a peacemaker's project.</span></span></summary><div class="src-body"><p><a class="wiki-link src-home" href="https://www.ssje.org/word/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></p></div></details><div class="src src-flat"><span class="src-n">3</span><div class="src-head"><span class="src-name">Henri Nouwen</span> <span class="src-flat-text">(couldn't confirm today; the daily meditation is email-only and not posted on the site.)</span><a class="wiki-link src-home" href="https://henrinouwen.org/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></div></div><details class="src"><summary><span class="src-n">4</span><span class="src-head"><span class="src-name">Inward/Outward: "Foolish and Wise"</span><span class="src-meta">(Kayla McClurg, founder of Inward/Outward; posted today)</span><span class="src-gist">On tomorrow's Gospel, the wise and foolish bridesmaids (Matthew 25:1–13). We all drift from spiritual alertness, she writes, and that's no cause for condemnation. The deeper failing is expecting others to keep our lamps filled for us: "There is no admittance to the feast of love" until we learn to tend our own inner life.</span></span></summary><div class="src-body"><p><a class="wiki-link src-home" href="https://inwardoutward.org/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></p></div></details><div class="src src-flat"><span class="src-n">5</span><div class="src-head"><span class="src-name">Pray As You Go: "A treasure hidden"</span> <span class="src-flat-text">(9:36), the Saturday Examen, a guided look back over the week. No scripture is listed.</span><a class="wiki-link src-home" href="https://pray-as-you-go.org/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></div></div><div class="src src-flat"><span class="src-n">6</span><div class="src-head"><span class="src-name">Verse &amp; Voice</span> <span class="src-flat-text">(from one year ago, November 7, 2025) John 21:17, the risen Jesus asking Peter a third time, "Do you love me?" and telling him, "Feed my sheep," paired with Joni Mitchell's "Banquet" (1972), a song about a feast where some get the best portions and others get nothing (summarized; lyrics not quoted).</span><a class="wiki-link src-home" href="https://sojo.net/daily-wisdom" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></div></div><details class="src"><summary><span class="src-n">7</span><span class="src-head"><span class="src-name">AA Daily Reflections: "Let Go and Let God"</span><span class="src-meta">(summarized in our own words)</span><span class="src-gist">Drawing on Step Eleven (<em>Twelve Steps and Twelve Traditions</em>, p. 96), the writer finds it easier to let go of painful, worrying thoughts by asking God to release them. That brings clearer thinking and the strength to meet each day, one day at a time. A refuge for the mind.</span></span></summary><div class="src-body"><p><a class="wiki-link src-home" href="https://www.aa.org/daily-reflection" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></p></div></details></div></details><details class="sec sec-group sec-sources" id="today-s-thread"><summary><span class="box-date">November 7th, 2026</span><span class="sec-title">The “Wh<span class="red-a">a</span>t would M<span class="red-a">a</span>tthew McCon<span class="red-a">a</span>ughey s<span class="red-a">a</span>y?” sect<span class="red-a">i</span>on</span><span class="dive-preview">Matthew McConaughey : (Imagined, in his voice. He never said this.) "Six towns, man. You mess up bad, by accident, you run to the gate and somebody lets you in. That's grace with an address. Be that town for somebody. Alright, alright, alright."</span></summary><div class="sec-body"><ul><li><strong><a href="https://en.wikipedia.org/wiki/Matthew_McConaughey" target="_blank" rel="noopener">Matthew McConaughey</a>:</strong> <em>(Imagined, in his voice. He never said this.)</em> "Six towns, man. You mess up bad, by accident, you run to the gate and somebody lets you in. That's grace with an address. Be that town for somebody. Alright, alright, alright."</li></ul></div></details></div>
+  <footer><p class="links"><span class="foot-label">Past days</span> <a href="https://meditarisafari.github.io/archive/" target="_blank" rel="noopener">The archive ↗</a></p><p class="links"><span class="foot-label">Sources</span> <a href="https://www.biblegateway.com/reading-plans/revised-common-lectionary-semicontinuous/2026/11/07" target="_blank" rel="noopener">RCL</a> · <a href="https://www.biblegateway.com/passage/?search=Psalm+78%3A1-7%3BJoshua+20%3A1-9%3BMatthew+24%3A1-14&amp;version=NRSVUE" target="_blank" rel="noopener">RCL texts (NRSVUE)</a> · <a href="https://www.catholicgallery.org/mass-reading/071126/" target="_blank" rel="noopener">Catholic</a> · <a href="https://www.missionstclare.com/english/November/whole/morning/07m.html" target="_blank" rel="noopener">Episcopal</a> · <a href="https://www.oca.org/readings/daily/2026/11/07" target="_blank" rel="noopener">Orthodox</a> · <a href="https://universalis.com/20261107/lauds.htm" target="_blank" rel="noopener">Divine Office</a> · <a href="https://classics.mit.edu/Antoninus/meditations.6.six.html" target="_blank" rel="noopener">Meditations</a> · <a href="https://sojo.net/daily-wisdom/verse-and-voice-110725" target="_blank" rel="noopener">Verse &amp; Voice</a> · <a href="https://www.hebcal.com/shabbat?geonameid=4887398&amp;M=on" target="_blank" rel="noopener">Hebcal</a> · <a href="https://www.sefaria.org/api/calendars?year=2026&amp;month=11&amp;day=7" target="_blank" rel="noopener">Sefaria calendar</a> · <a href="https://shubhpanchang.com/calendar/2026-11-07" target="_blank" rel="noopener">Panchang</a> · <a href="https://www.watmetta.org/news/Uposatha2026.pdf" target="_blank" rel="noopener">Uposatha</a> · <a href="https://www.ssje.org/2026/11/06/peacemakers/" target="_blank" rel="noopener">SSJE</a> · <a href="https://inwardoutward.org/foolish-and-wise/" target="_blank" rel="noopener">Inward/Outward</a> · <a href="https://www.prayasyougo.org/" target="_blank" rel="noopener">Pray As You Go</a> · <a href="https://justfortodaymeditations.com/daily-recovery-readings-november-7/" target="_blank" rel="noopener">AA</a> · <a href="https://www.sikhnet.com/hukam" target="_blank" rel="noopener">Hukamnama</a> · <a href="https://www.moravian.org/the-daily-texts/" target="_blank" rel="noopener">Moravian</a></p><p class="note">Heads up: CAC's meditation pages haven't loaded eleven days running, and Nouwen's daily meditation still can't be read on the web (about three weeks). Inward/Outward is posting again. It may be time to swap CAC and Nouwen for different sources; just say the word.</p></footer>
+</div>
+<script>
+document.getElementById('open-all').addEventListener('click', () => document.querySelectorAll('details').forEach(d => d.open = true));
+document.getElementById('close-all').addEventListener('click', () => document.querySelectorAll('details').forEach(d => d.open = false));
+// Small Wikipedia photos next to each Voices of Wisdom name, fetched when the page opens (Johnny, 2026-10-04).
+// If Wikipedia can't be reached, the names simply show without photos.
+document.querySelectorAll('.sec-voices li > strong > a[href*="wikipedia.org/wiki/"], .sec-sources li > strong > a[href*="wikipedia.org/wiki/"]').forEach(a => {
+  const title = a.getAttribute('href').split('/wiki/')[1];
+  fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + title)
+    .then(r => r.ok ? r.json() : null)
+    .then(j => {
+      if (!j || !j.thumbnail || !j.thumbnail.source) return;
+      const img = document.createElement('img');
+      img.className = 'vw-thumb'; img.alt = ''; img.loading = 'lazy';
+      img.src = j.thumbnail.source;
+      img.onerror = () => img.remove();
+      a.closest('li').classList.add('has-thumb');
+      a.closest('li').prepend(img);
+    })
+    .catch(() => {});
+});
+</script>
+
+<script data-goatcounter="https://meditarisafari.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script><script>
+(function(){
+  function send(name){ if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({path: name, title: name, event: true}); }
+  document.addEventListener('toggle', function(e){
+    var d = e.target; if (!d.open || d.tagName !== 'DETAILS') return;
+    var t = d.querySelector('summary .sec-title, summary .src-name, summary');
+    send('open: ' + (t ? t.textContent.trim().slice(0, 60) : 'box'));
+  }, true);
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+    send('link: ' + a.textContent.trim().slice(0, 60));
+  });
+})();
+</script>
+
+</body>
+</html>
