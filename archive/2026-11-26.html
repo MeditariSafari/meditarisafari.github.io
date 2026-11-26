@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}</style>
+</head>
+<body>
+<title>A Deeper Dave</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Sans+Condensed:wght@500;600&family=Playfair+Display:ital,wght@1,400;1,900&family=Inter:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: one narrow reading column at first light; every tradition folds shut so the morning reads as a list of doors. */
+:root {
+  --bg: #eef1f3;
+  --surface: #f8f9fa;
+  --fg: #1d2530;
+  --muted: #5b6672;
+  --question: #3d5f7c;
+  --rule: #d3d9de;
+  --accent: #8a5a12;
+  --accent-soft: #efe2cc;
+  --mass-bg: #dde6ee;
+  --group-bg: #ebd6b4;
+  --sources-bg: #dbe9d5;
+  --trad-bg: #d3e6dc;
+  --news-bg: #dbe8d2;
+  --mcc-bg: #e6e8cc;
+  --five-bg: #f6ead8;
+  --voices-bg: #d6e4e6;
+  --history-bg: #e4dccd;
+  --panel-bg: #e0e4e1;
+  --warn: #b3261e;
+  --alert-bg: #a8201a;
+  --theme-bg: #d3e0e6;
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --body: "Literata", Georgia, "Times New Roman", serif;
+  --label: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12171d; --surface: #1a2028; --fg: #e3e7eb; --muted: #9aa4ae; --question: #9fbdd6; --rule: #2c343e;
+    --accent: #e0b062; --accent-soft: #3a2f1f; --mass-bg: #263340; --group-bg: #42331d; --sources-bg: #253a2a; --trad-bg: #22382f; --news-bg: #273a28; --mcc-bg: #34371f; --five-bg: #3a2f22; --voices-bg: #22363a; --history-bg: #3a342a; --panel-bg: #1b2126; --warn: #ff8a80; --alert-bg: #9c1f19; --theme-bg: #22343b; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12171d; --surface: #1a2028; --fg: #e3e7eb; --muted: #9aa4ae; --question: #9fbdd6; --rule: #2c343e;
+  --accent: #e0b062; --accent-soft: #3a2f1f; --mass-bg: #263340; --group-bg: #42331d; --sources-bg: #253a2a; --trad-bg: #22382f; --news-bg: #273a28; --mcc-bg: #34371f; --five-bg: #3a2f22; --voices-bg: #22363a; --history-bg: #3a342a; --panel-bg: #1b2126; --warn: #ff8a80; --alert-bg: #9c1f19; --theme-bg: #22343b; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { font-size: 82%; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 13.9px; line-height: 1.6; }
+.wrap { max-width: 40rem; margin: 0 auto; padding-inline: 18px; padding-block: 2.2rem 3rem; display: flex; flex-direction: column; gap: 0.9rem; }
+header { display: flex; flex-direction: column; gap: 0.35rem; padding-bottom: 0.6rem; }
+.kicker { font-family: var(--label); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(1.45rem, 4.6vw, 1.95rem); line-height: 1.2; margin: 0; text-wrap: balance; }
+.masthead { display: flex; flex-direction: column; gap: 0.35rem; background: var(--accent-soft); padding: 1.1rem 1.1rem 1rem; margin-bottom: 0.3rem; border-radius: 10px 10px 0 0; border-bottom: 6px solid var(--fg); }
+.epigraph { display: flex; flex-direction: column; gap: 0.2rem; padding-bottom: 1rem; margin-bottom: 0.4rem; border-bottom: 3px solid var(--fg); }
+.attrib { font-family: var(--label); font-size: 0.85rem; letter-spacing: 0.06em; color: var(--muted); padding-left: 1rem; }
+.sub-h { font-family: var(--label); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0.6rem 0 0.5rem; }
+.corner-date { font-weight: 700; align-self: flex-end; font-family: var(--label); font-size: 0.78rem; letter-spacing: 0.05em; color: var(--muted); margin-bottom: -0.2rem; }
+.date { color: var(--question); font-size: 1rem; }
+.turn { font-family: var(--display); font-style: italic; font-size: 1.05rem; line-height: 1.45; margin: 0.4rem 0 0; color: var(--accent); text-wrap: balance; }
+.intro { font-family: var(--display); font-style: italic; font-size: 1.18rem; line-height: 1.45; margin: 0.4rem 0 0.2rem; max-width: 34rem; text-wrap: pretty; }
+.tools { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tools button { font-family: var(--label); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; background: none; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.8rem; cursor: pointer; }
+.tools button:hover { color: var(--fg); border-color: var(--muted); }
+details.sec { border-top: 1px solid var(--rule); }
+details.sec > summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.7rem; padding: 0.95rem 2rem 0.95rem 0; position: relative; }
+details summary::-webkit-details-marker { display: none; }
+details.sec > summary::after { content: "+"; position: absolute; right: 0.2rem; top: 0.8rem; font-family: var(--label); font-size: 1.35rem; color: var(--accent); transition: transform .2s; }
+details.sec[open] > summary::after { transform: rotate(45deg); }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.topline { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 0.4rem; }
+.topline .disclaimer { margin: 0; }
+.top-brand { font-family: var(--display); font-weight: 700; font-style: italic; font-size: 0.8rem; color: var(--warn); white-space: nowrap; }
+.disclaimer { margin: 0 0 0.4rem; text-align: left; font-family: var(--label); font-size: 0.66rem; font-weight: 600; color: var(--warn); }
+.mass-box { background: var(--mass-bg); border-radius: 8px; padding: 0.9rem 1rem; margin: 0.9rem 0; font-size: 1rem; }
+.mass-summary { display: block; margin-top: 1rem; padding: 0.9rem 1rem; border-radius: 8px; background: var(--alert-bg); color: #fff; font-family: 'Playfair Display', var(--display); font-style: italic; font-weight: 900; font-size: 1.2rem; line-height: 1.3; }
+.mass-refs { display: block; font-family: var(--display); font-style: italic; color: var(--accent); }
+.wiki-link { font-family: var(--label); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); text-decoration: none; border: 1px solid var(--rule); border-radius: 999px; padding: 0.05rem 0.5rem; }
+.src-home { align-self: flex-start; margin-top: 0.3rem; display: inline-block; }
+.wiki-link:hover { text-decoration: underline; }
+.mass-refs { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.15rem 0; }
+details.ref { display: inline-block; }
+details.ref > summary { list-style: none; cursor: pointer; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+details.ref > summary::-webkit-details-marker { display: none; }
+details.ref > summary::after { content: " ▾"; font-style: normal; font-size: 0.8em; }
+details.ref[open] { flex-basis: 100%; }
+details.ref[open] > summary::after { content: " ▴"; }
+.ref-pop { display: block; margin: 0.35rem 0 0.5rem; padding: 0.6rem 0.75rem; border-left: 3px solid var(--alert-bg); background: var(--panel-bg); border-radius: 4px; font-style: normal; color: var(--fg); font-family: var(--body, inherit); }
+.ref-about { display: block; margin-bottom: 0.4rem; }
+.ref-read { font-weight: 600; color: var(--alert-bg) !important; text-decoration: none !important; }
+.ref-sep { white-space: pre; }
+details.ref[open] + .ref-sep { display: none; }
+.mass-refs a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+.red-a { color: var(--warn); }
+li.has-thumb { overflow: hidden; }
+img.vw-thumb { float: left; width: 46px; height: 46px; object-fit: cover; object-position: center 20%; border-radius: 50%; margin: 0.15rem 0.6rem 0.3rem 0; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--rule); }
+details.sec.sec-five { border-top: 2px solid var(--fg); padding-top: 0.9rem; margin-bottom: 0.6rem; }
+details.sec.sec-five > summary { padding: 0.9rem 2.6rem 0.9rem 1rem; background: var(--five-bg); border-radius: 8px; }
+details.sec.sec-five > summary .sec-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.03em; }
+details.sec.sec-five > .sec-body { background: var(--five-bg); border-radius: 0 0 8px 8px; padding: 0.2rem 1rem 0.8rem; margin-top: -6px; }
+ul.dive-keys { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 1.2em; font-weight: 500; color: #111; margin: 0 0 1.3rem; padding: 1rem 1.1rem 1rem 2.1rem; background: #fff6c9; border-left: 5px solid var(--alert-bg); border-radius: 8px; line-height: 1.5; }
+ul.dive-keys li { margin: 0.4rem 0 0.8rem; }
+ul.dive-keys strong { font-weight: 800; color: var(--alert-bg); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) ul.dive-keys { background: #3a3418; color: #fff; } }
+:root[data-theme="dark"] ul.dive-keys { background: #3a3418; color: #fff; }
+.masthead-tag { align-self: flex-start; margin-top: 0.2rem; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 0.95rem; color: var(--fg); }
+.masthead-tag strong { font-weight: 600; }
+.church-tag { display: inline-block; background: var(--alert-bg); color: #fff; border-radius: 6px; padding: 0.15rem 0.6rem; }
+.church-tag strong { font-style: normal; }
+.mass-date { display: block; font-family: 'Playfair Display', var(--display); font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--muted); margin: -0.15rem 0 0.45rem; }
+.mass-label { display: block; font-family: var(--display); font-weight: 600; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.35rem; }
+.sec-title { font-family: var(--display); font-weight: 600; font-size: 1.02rem; }
+/* Red boxes: clean upright sans in pure white (Johnny, 2026-10-05). */
+.mass-summary, .church-tag, .church-tag * { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif !important; font-style: normal !important; color: #ffffff !important; }
+.mass-summary { font-weight: 700 !important; font-size: 1.12rem !important; line-height: 1.4 !important; letter-spacing: -0.005em; }
+.church-tag { font-weight: 500; font-size: 0.95rem; }
+.church-tag strong { font-weight: 700; }
+.sec-lead > summary .sec-title { font-family: var(--display); font-weight: 600; font-size: clamp(1.45rem, 4.6vw, 1.95rem); line-height: 1.2; color: var(--fg); text-transform: none; letter-spacing: 0; }
+details.sec.sec-lead > summary { padding: 1.1rem 2.6rem 1.1rem 1rem; background: var(--theme-bg); border-radius: 8px; }
+details.sec.sec-lead > summary::after { right: 1rem; top: 1rem; }
+details.sec.sec-five > summary::after { right: 1rem; top: 0.85rem; }
+details.sec.sec-group > summary { padding: 1.1rem 2.6rem 1.1rem 1rem; background: var(--sources-bg); border-radius: 8px; }
+details.sec.sec-group > summary::after { right: 1rem; top: 1rem; }
+details.sec-group { border-top: none; margin-top: 0.6rem; }
+details.sec-sources, details.sec-thread, details.sec-voices, details.sec-history { margin-top: 1rem; }
+details.sec.sec-group > summary { background: var(--trad-bg); }
+details.sec.sec-thread > summary { background: var(--news-bg); }
+details.sec.sec-sources > summary { background: var(--mcc-bg); }
+details.sec.sec-voices > summary { background: var(--voices-bg); }
+details.sec.sec-history > summary { background: var(--history-bg); }
+.sec-group > summary .sec-title { font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.03em; }
+.lower-panel { background: var(--panel-bg); border-radius: 12px; padding: 0.4rem 0.8rem 0.8rem; margin-top: 1rem; }
+.group-body { padding-left: 0.9rem; border-left: 2px solid var(--rule); }
+.group-body > details.sec:first-child { border-top: none; }
+.dive-preview { flex-basis: 100%; font-size: 0.95rem; line-height: 1.5; color: var(--muted); max-height: 4.5em; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, #000 25%, transparent); mask-image: linear-gradient(to bottom, #000 25%, transparent); }
+details[open] > summary > .dive-preview { display: none; }
+details.sec-lead > .sec-body { font-size: 0.92em; }
+details.sec-lead { border-top: 2px solid var(--fg); border-bottom: 2px solid var(--fg); padding: 0.9rem 0; margin-bottom: 0.6rem; }
+.sec-lead > summary .sec-sub { flex-basis: 100%; font-family: var(--display); font-style: italic; text-transform: none; letter-spacing: 0; font-size: 0.95rem; }
+.sec-sub { font-family: var(--label); font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); }
+.sec-body { padding-bottom: 1.1rem; min-width: 0; }
+.sec-body p { margin: 0 0 0.8rem; }
+.sec-body ul { margin: 0 0 0.8rem; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.sec-theme { background: var(--accent-soft); border-top: none !important; border-radius: 10px; padding-inline: 1rem; }
+.sec-theme > summary { flex-direction: column; align-items: flex-start !important; gap: 0.1rem !important; }
+.sec-label { font-family: var(--label); font-weight: 600; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.sec-theme .sec-title { font-size: 1.5rem; }
+.sub-drop { border-bottom: 1px dashed var(--rule); margin-bottom: 0.4rem; }
+.sub-drop > summary { list-style: none; cursor: pointer; position: relative; padding: 0.4rem 1.6rem 0.5rem 0; margin: 0; }
+.sub-drop > summary::after { content: "+"; position: absolute; right: 0.2rem; top: 0.15rem; font-size: 1.1rem; color: var(--accent); transition: transform .2s; }
+.sub-drop[open] > summary::after { transform: rotate(45deg); }
+.src { border-top: 1px dashed var(--rule); }
+.src:first-of-type { border-top: none; }
+.src > summary, .src-flat { list-style: none; cursor: pointer; display: grid; grid-template-columns: 1.8rem 1fr; gap: 0.6rem; padding: 0.7rem 0; }
+.src-flat { cursor: default; }
+.src-n { font-family: var(--label); font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; padding-top: 0.15rem; }
+.src-head { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.src-name { font-weight: 600; }
+.src-meta { font-family: var(--label); font-size: 0.82rem; color: var(--muted); }
+.src-gist, .src-flat-text { color: var(--muted); font-size: 0.97rem; }
+.src[open] .src-gist { color: var(--fg); }
+.src-body { padding: 0 0 0.6rem 2.4rem; }
+a { color: var(--accent); text-underline-offset: 2px; }
+footer { border-top: 1px solid var(--rule); padding-top: 1rem; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.88rem; color: var(--muted); }
+.foot-label { font-family: var(--label); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.75rem; margin-right: 0.3rem; }
+.links { overflow-wrap: anywhere; margin: 0; }
+.note { margin: 0; font-style: italic; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+/* Deeper Daive header as a red box with white Inter lettering (live page edit, 2026-10-05). */
+details.sec.sec-lead > summary { background: var(--alert-bg) !important; }
+details.sec.sec-lead > summary .sec-title, details.sec.sec-lead > summary .sec-title .red-a { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 800; color: #ffffff !important; }
+/* On the red Deeper Dave box, red letters would vanish, so its A's and I's show in gold (2026-10-15). */
+details.sec.sec-lead > summary .sec-title .red-a { color: #ffd54f !important; }
+details.sec.sec-lead > summary .dive-preview { color: rgba(255,255,255,0.85); }
+details.sec.sec-lead > summary::after { color: #ffffff; }
+a.mass-summary-link { text-decoration: none !important; }
+a.mass-summary-link:hover { filter: brightness(1.08); }
+.summary-credit { display: block; margin-top: 0.5rem; font-weight: 500; font-size: 0.85rem; text-decoration: underline; text-underline-offset: 2px; }
+.box-date { position: absolute; top: 0.3rem; right: 0.9rem; font-family: 'Inter', system-ui, sans-serif; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.03em; color: var(--muted); white-space: nowrap; }
+details.sec-five > summary, details.sec-lead > summary, details.sec-group > summary { padding-top: 1.35rem !important; }
+details.sec-five > summary::after, details.sec-lead > summary::after, details.sec-group > summary::after { top: 1.3rem !important; }
+details.sec.sec-lead > summary .box-date { color: rgba(255,255,255,0.85); }
+.mass-box { position: relative; padding-top: 1.4rem !important; }
+</style>
+<div class="wrap">
+  <header>
+    <div class="topline"><p class="disclaimer">This site and its name are under constant renovation.</p><span class="top-brand">The Meditari Safari</span></div>
+  <div class="masthead">
+      <span class="corner-date">Thursday, November 26, 2026</span>
+      <h1><span class="red-a">A</span> DEEPER D<span class="red-a">A</span>VE</h1>
+      <span class="masthead-tag"><strong>An exploration of human wisdom starting with today's lectionary.</strong></span>
+    </div>
+    <div class="tools"><button type="button" id="open-all">Open all</button><button type="button" id="close-all">Close all</button></div>
+  </header>
+  <div class="mass-box"><span class="box-date">November 26th, 2026</span><span class="mass-refs"><a href="https://www.biblegateway.com/passage/?search=Psalm+80%3A1-7%2C+17-19&amp;version=NRSVUE" target="_blank" rel="noopener">Psalm 80:1–7, 17–19</a><span class="ref-sep"> · </span><details class="ref"><summary>Zechariah 13:1–9</summary><div class="ref-pop"><span class="ref-about"><strong>Old Testament</strong>, the Book of Zechariah, from its later chapters (9–14). A fountain for cleansing, the end of false prophets, a struck shepherd, and a remnant refined like silver and gold.</span><a class="ref-read" href="https://www.biblegateway.com/passage/?search=Zechariah+13%3A1-9&amp;version=NRSVUE" target="_blank" rel="noopener">Read the passage ↗</a></div></details><span class="ref-sep"> · </span><details class="ref"><summary>Revelation 14:6–13</summary><div class="ref-pop"><span class="ref-about"><strong>New Testament</strong>, the Book of Revelation. Three angels announce the gospel and judgment, and a voice blesses those who die in the Lord, who rest from their labors.</span><a class="ref-read" href="https://www.biblegateway.com/passage/?search=Revelation+14%3A6-13&amp;version=NRSVUE" target="_blank" rel="noopener">Read the passage ↗</a></div></details></span><span class="mass-summary">“A people who have lost much ask God to turn and shine on them again, and God promises to cleanse, refine and answer them.”</span></div><details class="sec sec-five" id="five-minute-version"><summary><span class="box-date">November 26th, 2026</span><span class="sec-title">The f<span class="red-a">i</span>ve-m<span class="red-a">i</span>nute vers<span class="red-a">i</span>on</span></summary><div class="sec-body"><p><strong>The readings:</strong> Psalm 80 is a prayer from people who have lost a great deal. Three times they cry the same line: "Restore us, O God; let your face shine, that we may be saved." Zechariah promises a fountain that will wash Jerusalem clean, and a remnant refined like silver who will call on God and be answered (paraphrased). Revelation shows an angel carrying good news to every nation on earth (paraphrased).</p>
+<p><strong>What it means:</strong> Thanksgiving isn't only for full years. Psalm 80 is gratitude's other half: asking God to turn his face toward us again. The shining face is the oldest blessing in the Bible, the priestly blessing asking God to make his face shine on you (Numbers 6:25, paraphrased). Today, the faces around the table may be how that blessing arrives.</p>
+<p><strong>Across the traditions:</strong> the same truth, in other words.</p>
+<ul><li><strong>Epictetus:</strong> He taught that the wise person doesn't grieve over what he lacks but rejoices in what he has. (<em>Fragments</em>, paraphrased.)</li><li><strong>Judaism:</strong> Psalm 80 is also in today's monthly cycle of Psalms, read by Jews around the world.</li><li><strong>Bahá'í:</strong> Today is the Day of the Covenant, a feast of thanks for unity.</li><li><strong>Sikhism:</strong> Guru Nanak taught that the Giver never tires of giving (paraphrased).</li></ul>
+<p><strong>Carry it today:</strong> Whose face will you give thanks for today?</p></div></details><details class="sec sec-lead" id="today-s-theme-in-christianity"><summary><span class="box-date">November 26th, 2026</span><span class="sec-title"><span class="red-a">A</span> DEEPER D<span class="red-a">A</span>VE</span><span class="dive-preview">Shepherd of Israel: A plea to the one who leads. Let your face shine: The refrain, three times. The fountain: Cleansing promised. Refined like silver: A remnant that calls and is answered. Yesterday, Jeremiah gathered the flock home to a harvest feast. Today, the psalmist asks the Shepherd to look on them again. 1. Giv</span></summary><div class="sec-body"><details class="sub-drop"><summary class="sub-h">Today's readings</summary><div class="sub-drop-body"><ul><li><strong>Protestant (RCL):</strong> Psalm 80:1–7, 17–19 · Zechariah 13:1–9 · Revelation 14:6–13. "Give ear, O Shepherd of Israel, you who lead Joseph like a flock! You who are enthroned upon the cherubim, shine forth." "Restore us, O God; let your face shine, that we may be saved." Zechariah promises a fountain opened on that day to cleanse Jerusalem, and a refined remnant who will call on God's name and be answered (paraphrased). In Revelation, an angel flies through the sky with an eternal gospel for every nation, tribe, language and people (paraphrased).</li><li><strong>Catholic:</strong> Thursday of the 34th week in Ordinary Time; in the U.S., <strong>Thanksgiving Day</strong> Mass texts may be used. Revelation 18:1–2, 21–23; 19:1–3, 9a · Psalm 100 ("Blessed are they who are called to the wedding feast of the Lamb") · Luke 21:20–28 ("look up, and lift up your heads, because your redemption is at hand").</li><li><strong>Episcopal:</strong> <strong>Thanksgiving Day (USA).</strong> Morning Prayer: Psalms 131, 132, 133 · Zechariah 13:1–9 · Ephesians 1:15–23 · Luke 19:11–27 (the parable of the pounds).</li><li><strong>Orthodox:</strong> Commemoration of <strong>the Righteous Gideon</strong>, <strong>St. Alypius the Stylite</strong> (7th c.), and <strong>St. Innocent of Irkutsk</strong> (1731). 1 Timothy 3:1–13 · Luke 18:31–34.</li><li><strong>Divine Office:</strong> Thursday of the 34th week in Ordinary Time. Morning Prayer: Psalm 80 ("Lord, rouse up your might and come to our help"), the Canticle of Isaiah 12 ("The Lord has done marvellous things: let them be made known to the whole world"), Psalm 81 ("Ring out your joy to God our strength"). Benedictus antiphon: "Give your people knowledge of salvation, Lord, and forgive us our sins."</li><li><strong>Rosary:</strong> Luminous Mysteries (Thursday).</li><li><strong>Moravian Watchword:</strong> 2 Chronicles 32:24–25 (Hezekiah "prayed to the LORD, and he answered him and gave him a sign") · Doctrinal Text: Colossians 2:6–7, "Continue to walk in him, abounding in thanksgiving."</li><li>Thursday after Christ the King (Proper 29, Year A). <strong>Happy Thanksgiving.</strong> Advent begins Sunday. Tomorrow's RCL readings: Psalm 80:1–7, 17–19 · Zechariah 14:1–9 · 1 Thessalonians 4:1–18 (the Lord will come and reign over all the earth).</li></ul></div></details><h3 class="sub-h">The theme</h3><ul class="dive-keys"><li><strong>Shepherd of Israel:</strong> A plea to the one who leads.</li><li><strong>Let your face shine:</strong> The refrain, three times.</li><li><strong>The fountain:</strong> Cleansing promised.</li><li><strong>Refined like silver:</strong> A remnant that calls and is answered.</li></ul>
+<p>Yesterday, Jeremiah gathered the flock home to a harvest feast. Today, the psalmist asks the Shepherd to look on them again.</p>
+<p><strong>1. Give Ear, O Shepherd</strong></p>
+<p>"Give ear, O Shepherd of Israel, you who lead Joseph like a flock! You who are enthroned upon the cherubim, shine forth."</p>
+<ul><li><strong>Shepherd again:</strong> The same image as this week's readings in Ezekiel, Zechariah 11 and Jeremiah.</li><li><strong>Enthroned on the cherubim:</strong> God's seat above the Ark of the Covenant.</li></ul>
+<p><strong>2. Let Your Face Shine</strong></p>
+<p>"Restore us, O God; let your face shine, that we may be saved."</p>
+<ul><li><strong>A refrain:</strong> It comes back in verses 3, 7 and 19, and grows each time: God, God of hosts, Lord God of hosts.</li><li><strong>The priestly blessing:</strong> It echoes the priestly blessing of Numbers 6:25, where God's face shines on the people (paraphrased).</li></ul>
+<p><strong>3. A Fountain Opened</strong></p>
+<p>Zechariah says that on that day a fountain will be opened for the house of David and Jerusalem, to wash away sin and impurity (paraphrased).</p>
+<ul><li><strong>Cleansing:</strong> Before restoration comes washing.</li><li><strong>Water again:</strong> Yesterday's watered garden becomes today's open fountain.</li></ul>
+<p><strong>4. Refined Like Silver</strong></p>
+<p>Zechariah says God will refine the remnant like silver and test them like gold; they will call on his name and he will answer them (paraphrased).</p>
+<ul><li><strong>Through fire:</strong> What's left after hardship is purer.</li><li><strong>Call and answer:</strong> The relationship is restored: "You are my people," "The Lord is our God."</li></ul>
+<p><strong>5. Rest From Their Labors</strong></p>
+<p>Revelation blesses those who die in the Lord, saying they rest from their labors and their deeds follow them (paraphrased). On a holiday, many tables have an empty chair. Thanksgiving can hold both gratitude for who's here and for those whose work is done.</p><details class="sub-drop sub-christian"><summary class="sub-h">For Christians today</summary><div class="sub-drop-body"><p>Thanksgiving is a civic holiday with deep church roots.</p>
+<ul><li><strong>Episcopal:</strong> The Book of Common Prayer has its own Thanksgiving Day collect and readings; many parishes hold a morning Eucharist.</li><li><strong>Catholic:</strong> U.S. bishops provide Thanksgiving Day Mass texts, and today's Gospel ends, "lift up your heads."</li><li><strong>Protestant and evangelical:</strong> Many families say a longer grace today, and churches serve community meals.</li><li><strong>Orthodox:</strong> Today honors Gideon, the judge who asked God for a sign before he would act.</li><li><strong>Eucharist:</strong> The word itself means "thanksgiving" in Greek.</li></ul>
+<p><strong>Carry it today:</strong> Look around the table and silently bless each face.</p></div></details></div></details><div class="lower-panel"><details class="sec sec-group" id="traditions"><summary><span class="box-date">November 26th, 2026</span><span class="sec-title">How <span class="red-a">i</span>t rel<span class="red-a">a</span>tes to tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on<span class="red-a">a</span>l rel<span class="red-a">i</span>g<span class="red-a">i</span>ons</span><span class="dive-preview">Stoicism What is Stoicism? A philosophy founded by Zeno of Citium around 300 BC in Athens, named for the painted porch ( stoa ) where he taught. Its most famous teachers are Epictetus, born into slavery; Seneca, a Roman statesman; and the emperor Marcus Aurelius. The Stoics taught that we can't control events, only our</span></summary><div class="sec-body group-body"><details class="sec" id="stoicism"><summary><span class="sec-title">Sto<span class="red-a">i</span>c<span class="red-a">i</span>sm</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Stoicism" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><strong>What is Stoicism?</strong> A philosophy founded by Zeno of Citium around 300 BC in Athens, named for the painted porch (<em>stoa</em>) where he taught. Its most famous teachers are Epictetus, born into slavery; Seneca, a Roman statesman; and the emperor Marcus Aurelius. The Stoics taught that we can't control events, only our judgments and choices. Their four virtues are wisdom, courage, justice and self-control.</p>
+<p>Epictetus taught that a wise person does not grieve over the things he lacks, but rejoices in the things he has. (<em>Fragments</em>, paraphrased.) On Thanksgiving, that's the whole lesson. The Stoic practice is to look at what is here, the food, the people, this day, and let that be enough.</p></div></details><details class="sec" id="bah-tradition"><summary><span class="sec-title">B<span class="red-a">a</span>há'í Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Bah%C3%A1%CA%BC%C3%AD_Faith" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through a Bahá'í lens: the Covenant.</em></p>
+<ul><li><strong>Day of the Covenant:</strong> Today Bahá'ís celebrate the Covenant, Bahá'u'lláh's appointment of 'Abdu'l-Bahá as the center of unity after him. It is a feast day, with no work suspended.</li><li><strong>Unity:</strong> Like Psalm 80's scattered tribes, the Covenant is about keeping a people whole.</li></ul>
+<p>4 Qawl 183 B.E., the fourth day of the month of Speech. (B.E. means "Bahá'í Era," counted from 1844.) The Ascension of 'Abdu'l-Bahá is Saturday.</p></div></details><details class="sec" id="hindu-jain-tradition"><summary><span class="sec-title">H<span class="red-a">i</span>ndu &amp; J<span class="red-a">a</span><span class="red-a">i</span>n Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Hinduism" target="_blank" rel="noopener">Hindu wiki ↗</a><a class="wiki-link" href="https://en.wikipedia.org/wiki/Jainism" target="_blank" rel="noopener">Jain wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through Hindu and Jain eyes: darshan.</em></p>
+<ul><li><strong>The Hindu lens:</strong> <em>Darshan</em>, "seeing," means to see the divine face and be seen by it, just what Psalm 80 asks for.</li><li><strong>The Jain lens:</strong> Jains seek purification of the soul, like silver refined in fire, until its own light shines.</li></ul>
+<p>Today is <strong>Krishna Dwitiya</strong>, the second day after the full moon, turning to <strong>Tritiya</strong> in the afternoon, with the moon moving from <strong>Mrigashira</strong> into <strong>Ardra</strong> (per Indian calendars; exact Chicago times couldn't be confirmed). Month: <strong>Margashirsha</strong> (northern reckoning). Kanaka Dasa Jayanti is tomorrow.</p>
+<p><strong>What the words mean</strong> (all Sanskrit):</p>
+<ul><li><strong>Darshan:</strong> "seeing" or "sight."</li><li><strong>Dwitiya:</strong> "the second."</li><li><strong>Ardra:</strong> "moist," the star of storms.</li></ul></div></details><details class="sec" id="sikh-tradition"><summary><span class="sec-title">S<span class="red-a">i</span>kh Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Sikhism" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through a Sikh lens: the Giver.</em></p>
+<ul><li><strong>Shukrana:</strong> Sikhs say "shukar hai," thanks be, for all that comes.</li><li><strong>Langar:</strong> Every gurdwara kitchen feeds all who come, the same table for everyone.</li></ul>
+<p>Hukamnama (the verse drawn each morning from the Guru Granth Sahib at the Golden Temple and read by Sikhs worldwide): Ang 641, Raag Sorath, by Guru Arjan. SikhNet's English opens: "They read scriptures, and contemplate the Vedas;" the verse goes on to say that such practices alone don't bring the Lord's love.</p></div></details><details class="sec" id="islamic-tradition"><summary><span class="sec-title"><span class="red-a">I</span>sl<span class="red-a">a</span>m<span class="red-a">i</span>c Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Islam" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through an Islamic lens: the face of God.</em></p>
+<ul><li><strong>Wajh Allah:</strong> The Qur'an says, wherever you turn, there is the face of God (2:115, paraphrased).</li><li><strong>Shukr:</strong> If you are grateful, I will surely increase you (14:7, paraphrased).</li></ul>
+<p>16 Jumada al-Akhirah 1448 (may differ by a day where the moon is sighted locally).</p></div></details><details class="sec" id="jewish-tradition"><summary><span class="sec-title">Jew<span class="red-a">i</span>sh Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Judaism" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through a Jewish lens: Psalm 80 today.</em></p>
+<ul><li><strong>Tehillim:</strong> Today's portion of the monthly Psalms cycle includes Psalm 80, the same psalm Christians read today.</li><li><strong>Vayishlach:</strong> This week Jacob wrestles all night and says he has seen God face to face (Genesis 32:30, paraphrased).</li></ul>
+<p>16 Kislev 5787.</p>
+<ul><li><strong>Torah:</strong> This week's portion is <strong>Vayishlach</strong> (Genesis 32:4–36:43). Haftarah: Obadiah 1:1–21. All movements read the same portion; many Conservative and Reform congregations read part of it on a triennial cycle.</li><li><strong>Daily prayers:</strong> Thursday, so the opening of Vayishlach is read at Shacharit. Conservative and Reform follow the same where there is a weekday service. Shabbat begins tomorrow evening.</li><li><strong>Study cycles:</strong> Daf Yomi (one page of Talmud a day, worldwide) Arakhin 9 · Tehillim for the 16th of the month: Psalms 79–82 · Rambam: Laws of Forbidden Foods, ch. 16.</li></ul></div></details><details class="sec" id="buddhist-tradition"><summary><span class="sec-title">Buddh<span class="red-a">i</span>st Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Buddhism" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through a Buddhist lens: gratitude for others.</em></p>
+<ul><li><strong>Katannu:</strong> Gratitude, knowing what others have done for you, is a mark of a good person (<em>Anguttara Nikaya</em>, paraphrased).</li><li><strong>Parents:</strong> The Buddha taught that we can never fully repay our parents (<em>Anguttara Nikaya</em>, paraphrased), a good thought at a family table.</li></ul>
+<p>The next uposatha is the half moon, around December 1 (per the Wat Metta calendar).</p></div></details></div></details><details class="sec sec-group sec-history" id="historical-context-what-we-know"><summary><span class="box-date">November 26th, 2026</span><span class="sec-title">H<span class="red-a">i</span>stor<span class="red-a">i</span>c<span class="red-a">a</span>l context: wh<span class="red-a">a</span>t we know</span><span class="dive-preview">The time. Psalm 80 names the northern tribes (Ephraim, Benjamin and Manasseh), and many scholars link it to the fall of the northern kingdom to Assyria around 722 BC. Zechariah 9–14 is usually dated later than chapters 1–8, which come from about 520 BC. Revelation was written around AD 95. What scholars broadly agree o</span></summary><div class="sec-body"><p><strong>The time.</strong> Psalm 80 names the northern tribes (Ephraim, Benjamin and Manasseh), and many scholars link it to the fall of the northern kingdom to Assyria around 722 BC. Zechariah 9–14 is usually dated later than chapters 1–8, which come from about 520 BC. Revelation was written around AD 95.</p>
+<p><strong>What scholars broadly agree on.</strong> Psalm 80 is a communal lament, likely sung in worship. Zechariah 9–14 differs in style from chapters 1–8 and is often called "Second Zechariah."</p>
+<p><strong>What it meant then.</strong> For a people overrun by empire, the prayer kept faith that God could still turn and save.</p>
+<p><strong>The allegorical readings.</strong> The fathers read the vine of Psalm 80 as the church, and the shining face as Christ, the face of God made visible.</p>
+<p><strong>What's debated or unknown.</strong> The exact date and author of Zechariah 9–14, and whether Psalm 80 was first sung in the north or in Jerusalem.</p></div></details><details class="sec sec-group sec-voices" id="voices-of-wisdom"><summary><span class="box-date">November 26th, 2026</span><span class="sec-title">Vo<span class="red-a">i</span>ces of W<span class="red-a">i</span>sdom</span><span class="dive-preview">Joseph Campbell : He taught that the hero returns home changed, seeing the ordinary world with new eyes. (Paraphrased.) Restored. Eckhart Tolle : He teaches that gratitude for the present moment opens the door to peace. (Our summary of his ideas, not his words.) Thanks today. Thich Nhat Hanh : He taught that when we lo</span></summary><div class="sec-body"><ul><li><strong><a href="https://en.wikipedia.org/wiki/Joseph_Campbell" target="_blank" rel="noopener">Joseph Campbell</a>:</strong> He taught that the hero returns home changed, seeing the ordinary world with new eyes. (Paraphrased.) Restored.</li><li><strong><a href="https://en.wikipedia.org/wiki/Eckhart_Tolle" target="_blank" rel="noopener">Eckhart Tolle</a>:</strong> He teaches that gratitude for the present moment opens the door to peace. (Our summary of his ideas, not his words.) Thanks today.</li><li><strong><a href="https://en.wikipedia.org/wiki/Thich_Nhat_Hanh" target="_blank" rel="noopener">Thich Nhat Hanh</a>:</strong> He taught that when we look deeply at a loved one's face, we see their ancestors and our own. (Paraphrased.) Faces at the table.</li><li><strong><a href="https://en.wikipedia.org/wiki/George_Gurdjieff" target="_blank" rel="noopener">Gurdjieff</a>:</strong> He taught that real attention to another person is a kind of gift. (Paraphrased.) Looking up.</li><li><strong><a href="https://en.wikipedia.org/wiki/Tao_Te_Ching" target="_blank" rel="noopener">Tao Te Ching</a>:</strong> It says the sage is like water, nourishing all things without striving. (Ch. 8, paraphrased.) The fountain.</li><li><strong><a href="https://en.wikipedia.org/wiki/Martin_Luther_King_Jr." target="_blank" rel="noopener">Martin Luther King Jr.</a>:</strong> He spoke of the beloved community, where every face is recognized as kin. (Paraphrased.) Faces.</li><li><strong><a href="https://en.wikipedia.org/wiki/Confucius" target="_blank" rel="noopener">Confucius</a>:</strong> He taught that filial respect shows in the face, not just in serving food. (<em>Analects</em> 2.8, paraphrased.) The holiday table.</li><li><strong><a href="https://en.wikipedia.org/wiki/Nelson_Mandela" target="_blank" rel="noopener">Nelson Mandela</a>:</strong> He wrote of how much he missed his family's faces in prison. (<em>Long Walk to Freedom</em>, paraphrased.) Faces we miss.</li><li><strong><a href="https://en.wikipedia.org/wiki/Epictetus" target="_blank" rel="noopener">Epictetus</a>:</strong> He taught to rejoice in what we have, not grieve over what we lack. (<em>Fragments</em>, paraphrased.) Contentment.</li><li><strong><a href="https://en.wikipedia.org/wiki/Ram_Dass" target="_blank" rel="noopener">Ram Dass</a>:</strong> He taught to see God in everyone, even in difficult relatives. (Paraphrased.) Holiday tables.</li><li><strong><a href="https://en.wikipedia.org/wiki/The_Buddha" target="_blank" rel="noopener">Buddha</a>:</strong> He taught that gratitude is the mark of a good person. (<em>Anguttara Nikaya</em>, paraphrased.) Thanks.</li><li><strong><a href="https://en.wikipedia.org/wiki/Bhagavad_Gita" target="_blank" rel="noopener">Bhagavad Gita</a>:</strong> It says that God shines in all beings, like light in the sun and moon. (Ch. 7 and 10, paraphrased.) Shining face.</li><li><strong><a href="https://en.wikipedia.org/wiki/Gregory_of_Nyssa" target="_blank" rel="noopener">Gregory of Nyssa</a>:</strong> He taught that seeing God's face means following him, always moving toward more. (<em>Life of Moses</em>, paraphrased.) Let your face shine.</li><li><strong><a href="https://en.wikipedia.org/wiki/Rumi" target="_blank" rel="noopener">Rumi</a>:</strong> He wrote that the face of the Beloved is everywhere. (Attributed, paraphrased.) Faces.</li><li><strong><a href="https://en.wikipedia.org/wiki/Desert_Fathers" target="_blank" rel="noopener">Desert Fathers</a>:</strong> The elders said that when you see your brother, you see God. (<em>Sayings</em>, paraphrased.) Faces at the table.</li><li><strong><a href="https://en.wikipedia.org/wiki/Kahlil_Gibran" target="_blank" rel="noopener">Kahlil Gibran</a>:</strong> He wrote that work is love made visible. (<em>The Prophet</em>, "On Work," paraphrased.) Those who cooked.</li><li><strong><a href="https://en.wikipedia.org/wiki/Viktor_Frankl" target="_blank" rel="noopener">Viktor Frankl</a>:</strong> He wrote that in the camp, the image of his wife's face sustained him. (<em>Man's Search for Meaning</em>, paraphrased.) A face remembered.</li><li><strong><a href="https://en.wikipedia.org/wiki/Alan_Watts" target="_blank" rel="noopener">Alan Watts</a>:</strong> He taught that life is a dance to be enjoyed, not a goal to reach. (Paraphrased.) Enjoy the feast.</li><li><strong>SSJE:</strong> Br. Geoffrey Tristram's "Thanksgiving": "Start every morning with thanksgiving." Gratitude loosens our grip on wanting more.</li><li><strong>Moravian:</strong> Today's Doctrinal Text fits the day exactly: "abounding in thanksgiving."</li></ul></div></details><details class="sec sec-group sec-thread" id="daily-sources"><summary><span class="box-date">November 26th, 2026</span><span class="sec-title">Newsletter d<span class="red-a">a</span><span class="red-a">i</span>ly bre<span class="red-a">a</span>kdowns</span><span class="dive-preview">1 Richard Rohr / CAC (couldn't confirm today; the site's meditation pages didn't load, thirtieth day running.) Read &amp; subscribe ↗ 2 SSJE "Brother, Give Us a Word": "Thanksgiving" (Br. Geoffrey Tristram) "Start every morning with thanksgiving." He urges beginning each day by thanking God for his abundant gifts, because </span></summary><div class="sec-body"><div class="src src-flat"><span class="src-n">1</span><div class="src-head"><span class="src-name">Richard Rohr / CAC</span> <span class="src-flat-text">(couldn't confirm today; the site's meditation pages didn't load, thirtieth day running.)</span><a class="wiki-link src-home" href="https://cac.org/daily-meditations/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></div></div><details class="src"><summary><span class="src-n">2</span><span class="src-head"><span class="src-name">SSJE "Brother, Give Us a Word": "Thanksgiving"</span><span class="src-meta">(Br. Geoffrey Tristram)</span><span class="src-gist">"Start every morning with thanksgiving." He urges beginning each day by thanking God for his abundant gifts, because gratitude frees us from the compulsive desire for more.</span></span></summary><div class="src-body"><p><a class="wiki-link src-home" href="https://www.ssje.org/word/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></p></div></details><div class="src src-flat"><span class="src-n">3</span><div class="src-head"><span class="src-name">Henri Nouwen</span> <span class="src-flat-text">(couldn't confirm today; the daily meditation is email-only and not posted on the site.)</span><a class="wiki-link src-home" href="https://henrinouwen.org/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></div></div><div class="src src-flat"><span class="src-n">4</span><div class="src-head"><span class="src-name">Inward/Outward</span> <span class="src-flat-text">(no new reflection since last Friday's "When Did We See You?"; this week's should post tomorrow.)</span><a class="wiki-link src-home" href="https://inwardoutward.org/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></div></div><div class="src src-flat"><span class="src-n">5</span><div class="src-head"><span class="src-name">Pray As You Go</span> <span class="src-flat-text">(couldn't confirm today; the site still showed Wednesday's session, "You will gain your souls.")</span><a class="wiki-link src-home" href="https://pray-as-you-go.org/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></div></div><div class="src src-flat"><span class="src-n">6</span><div class="src-head"><span class="src-name">Verse &amp; Voice</span> <span class="src-flat-text">(couldn't confirm today; the issue from one year ago, November 26, 2025, didn't load. The year-ago pages haven't loaded since last Wednesday.)</span><a class="wiki-link src-home" href="https://sojo.net/daily-wisdom" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></div></div><details class="src"><summary><span class="src-n">7</span><span class="src-head"><span class="src-name">AA Daily Reflections: "The 'Worth' of Sobriety"</span><span class="src-meta">(summarized in our own words)</span><span class="src-gist">What is sobriety worth to us? Members often let others cover the group's costs; the reading says each of us should give our share so the group can support itself, gratitude put into practice.</span></span></summary><div class="src-body"><p><a class="wiki-link src-home" href="https://www.aa.org/daily-reflection" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></p></div></details></div></details><details class="sec sec-group sec-sources" id="today-s-thread"><summary><span class="box-date">November 26th, 2026</span><span class="sec-title">The “Wh<span class="red-a">a</span>t would M<span class="red-a">a</span>tthew McCon<span class="red-a">a</span>ughey s<span class="red-a">a</span>y?” sect<span class="red-a">i</span>on</span><span class="dive-preview">Matthew McConaughey : (Imagined, in his voice. He never said this.) "Let your face shine. That's the whole prayer, man. Today look around that table, every face, the cranky uncle too, and say thanks. Alright, alright, alright."</span></summary><div class="sec-body"><ul><li><strong><a href="https://en.wikipedia.org/wiki/Matthew_McConaughey" target="_blank" rel="noopener">Matthew McConaughey</a>:</strong> <em>(Imagined, in his voice. He never said this.)</em> "Let your face shine. That's the whole prayer, man. Today look around that table, every face, the cranky uncle too, and say thanks. Alright, alright, alright."</li></ul></div></details></div>
+  <footer><p class="links"><span class="foot-label">Past days</span> <a href="https://meditarisafari.github.io/archive/" target="_blank" rel="noopener">The archive ↗</a></p><p class="links"><span class="foot-label">Sources</span> <a href="https://www.biblegateway.com/reading-plans/revised-common-lectionary-semicontinuous/2026/11/26" target="_blank" rel="noopener">RCL</a> · <a href="https://www.biblegateway.com/passage/?search=Psalm+80%3A1-7%2C17-19%3BZechariah+13%3A1-9%3BRevelation+14%3A6-13&amp;version=NRSVUE" target="_blank" rel="noopener">RCL texts (NRSVUE)</a> · <a href="https://www.catholicgallery.org/mass-reading/261126/" target="_blank" rel="noopener">Catholic</a> · <a href="https://www.missionstclare.com/english/November/whole/morning/26m.html" target="_blank" rel="noopener">Episcopal</a> · <a href="https://www.oca.org/readings/daily/2026/11/26" target="_blank" rel="noopener">Orthodox</a> · <a href="https://universalis.com/20261126/lauds.htm" target="_blank" rel="noopener">Divine Office</a> · <a href="https://www.hebcal.com/shabbat?geonameid=4887398&amp;M=on" target="_blank" rel="noopener">Hebcal</a> · <a href="https://www.sefaria.org/api/calendars?year=2026&amp;month=11&amp;day=26" target="_blank" rel="noopener">Sefaria calendar</a> · <a href="https://shubhpanchang.com/calendar/2026-11-26" target="_blank" rel="noopener">Panchang</a> · <a href="https://www.watmetta.org/news/Uposatha2026.pdf" target="_blank" rel="noopener">Uposatha</a> · <a href="https://www.moravian.org/the-daily-texts/" target="_blank" rel="noopener">Moravian</a> · <a href="https://www.ssje.org/2026/11/" target="_blank" rel="noopener">SSJE</a> · <a href="https://justfortodaymeditations.com/daily-recovery-readings-november-26/" target="_blank" rel="noopener">AA</a> · <a href="https://www.sikhnet.com/hukam" target="_blank" rel="noopener">Hukamnama</a></p><p class="note">Heads up: CAC's meditation pages haven't loaded thirty days running, Nouwen's daily meditation still can't be read on the web (about six weeks), and Verse &amp; Voice's year-ago issues stopped loading last Wednesday. It may be time to swap them for different sources; just say the word.</p></footer>
+</div>
+<script>
+document.getElementById('open-all').addEventListener('click', () => document.querySelectorAll('details').forEach(d => d.open = true));
+document.getElementById('close-all').addEventListener('click', () => document.querySelectorAll('details').forEach(d => d.open = false));
+// Small Wikipedia photos next to each Voices of Wisdom name, fetched when the page opens (Johnny, 2026-10-04).
+// If Wikipedia can't be reached, the names simply show without photos.
+document.querySelectorAll('.sec-voices li > strong > a[href*="wikipedia.org/wiki/"], .sec-sources li > strong > a[href*="wikipedia.org/wiki/"]').forEach(a => {
+  const title = a.getAttribute('href').split('/wiki/')[1];
+  fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + title)
+    .then(r => r.ok ? r.json() : null)
+    .then(j => {
+      if (!j || !j.thumbnail || !j.thumbnail.source) return;
+      const img = document.createElement('img');
+      img.className = 'vw-thumb'; img.alt = ''; img.loading = 'lazy';
+      img.src = j.thumbnail.source;
+      img.onerror = () => img.remove();
+      a.closest('li').classList.add('has-thumb');
+      a.closest('li').prepend(img);
+    })
+    .catch(() => {});
+});
+</script>
+
+<script data-goatcounter="https://meditarisafari.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script><script>
+(function(){
+  function send(name){ if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({path: name, title: name, event: true}); }
+  document.addEventListener('toggle', function(e){
+    var d = e.target; if (!d.open || d.tagName !== 'DETAILS') return;
+    var t = d.querySelector('summary .sec-title, summary .src-name, summary');
+    send('open: ' + (t ? t.textContent.trim().slice(0, 60) : 'box'));
+  }, true);
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+    send('link: ' + a.textContent.trim().slice(0, 60));
+  });
+})();
+</script>
+
+</body>
+</html>
