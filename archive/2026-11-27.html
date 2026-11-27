@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}</style>
+</head>
+<body>
+<title>A Deeper Dave</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Sans+Condensed:wght@500;600&family=Playfair+Display:ital,wght@1,400;1,900&family=Inter:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: one narrow reading column at first light; every tradition folds shut so the morning reads as a list of doors. */
+:root {
+  --bg: #eef1f3;
+  --surface: #f8f9fa;
+  --fg: #1d2530;
+  --muted: #5b6672;
+  --question: #3d5f7c;
+  --rule: #d3d9de;
+  --accent: #8a5a12;
+  --accent-soft: #efe2cc;
+  --mass-bg: #dde6ee;
+  --group-bg: #ebd6b4;
+  --sources-bg: #dbe9d5;
+  --trad-bg: #d3e6dc;
+  --news-bg: #dbe8d2;
+  --mcc-bg: #e6e8cc;
+  --five-bg: #f6ead8;
+  --voices-bg: #d6e4e6;
+  --history-bg: #e4dccd;
+  --panel-bg: #e0e4e1;
+  --warn: #b3261e;
+  --alert-bg: #a8201a;
+  --theme-bg: #d3e0e6;
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --body: "Literata", Georgia, "Times New Roman", serif;
+  --label: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12171d; --surface: #1a2028; --fg: #e3e7eb; --muted: #9aa4ae; --question: #9fbdd6; --rule: #2c343e;
+    --accent: #e0b062; --accent-soft: #3a2f1f; --mass-bg: #263340; --group-bg: #42331d; --sources-bg: #253a2a; --trad-bg: #22382f; --news-bg: #273a28; --mcc-bg: #34371f; --five-bg: #3a2f22; --voices-bg: #22363a; --history-bg: #3a342a; --panel-bg: #1b2126; --warn: #ff8a80; --alert-bg: #9c1f19; --theme-bg: #22343b; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12171d; --surface: #1a2028; --fg: #e3e7eb; --muted: #9aa4ae; --question: #9fbdd6; --rule: #2c343e;
+  --accent: #e0b062; --accent-soft: #3a2f1f; --mass-bg: #263340; --group-bg: #42331d; --sources-bg: #253a2a; --trad-bg: #22382f; --news-bg: #273a28; --mcc-bg: #34371f; --five-bg: #3a2f22; --voices-bg: #22363a; --history-bg: #3a342a; --panel-bg: #1b2126; --warn: #ff8a80; --alert-bg: #9c1f19; --theme-bg: #22343b; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { font-size: 82%; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 13.9px; line-height: 1.6; }
+.wrap { max-width: 40rem; margin: 0 auto; padding-inline: 18px; padding-block: 2.2rem 3rem; display: flex; flex-direction: column; gap: 0.9rem; }
+header { display: flex; flex-direction: column; gap: 0.35rem; padding-bottom: 0.6rem; }
+.kicker { font-family: var(--label); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(1.45rem, 4.6vw, 1.95rem); line-height: 1.2; margin: 0; text-wrap: balance; }
+.masthead { display: flex; flex-direction: column; gap: 0.35rem; background: var(--accent-soft); padding: 1.1rem 1.1rem 1rem; margin-bottom: 0.3rem; border-radius: 10px 10px 0 0; border-bottom: 6px solid var(--fg); }
+.epigraph { display: flex; flex-direction: column; gap: 0.2rem; padding-bottom: 1rem; margin-bottom: 0.4rem; border-bottom: 3px solid var(--fg); }
+.attrib { font-family: var(--label); font-size: 0.85rem; letter-spacing: 0.06em; color: var(--muted); padding-left: 1rem; }
+.sub-h { font-family: var(--label); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0.6rem 0 0.5rem; }
+.corner-date { font-weight: 700; align-self: flex-end; font-family: var(--label); font-size: 0.78rem; letter-spacing: 0.05em; color: var(--muted); margin-bottom: -0.2rem; }
+.date { color: var(--question); font-size: 1rem; }
+.turn { font-family: var(--display); font-style: italic; font-size: 1.05rem; line-height: 1.45; margin: 0.4rem 0 0; color: var(--accent); text-wrap: balance; }
+.intro { font-family: var(--display); font-style: italic; font-size: 1.18rem; line-height: 1.45; margin: 0.4rem 0 0.2rem; max-width: 34rem; text-wrap: pretty; }
+.tools { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tools button { font-family: var(--label); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; background: none; color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.8rem; cursor: pointer; }
+.tools button:hover { color: var(--fg); border-color: var(--muted); }
+details.sec { border-top: 1px solid var(--rule); }
+details.sec > summary { list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.7rem; padding: 0.95rem 2rem 0.95rem 0; position: relative; }
+details summary::-webkit-details-marker { display: none; }
+details.sec > summary::after { content: "+"; position: absolute; right: 0.2rem; top: 0.8rem; font-family: var(--label); font-size: 1.35rem; color: var(--accent); transition: transform .2s; }
+details.sec[open] > summary::after { transform: rotate(45deg); }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.topline { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 0.4rem; }
+.topline .disclaimer { margin: 0; }
+.top-brand { font-family: var(--display); font-weight: 700; font-style: italic; font-size: 0.8rem; color: var(--warn); white-space: nowrap; }
+.disclaimer { margin: 0 0 0.4rem; text-align: left; font-family: var(--label); font-size: 0.66rem; font-weight: 600; color: var(--warn); }
+.mass-box { background: var(--mass-bg); border-radius: 8px; padding: 0.9rem 1rem; margin: 0.9rem 0; font-size: 1rem; }
+.mass-summary { display: block; margin-top: 1rem; padding: 0.9rem 1rem; border-radius: 8px; background: var(--alert-bg); color: #fff; font-family: 'Playfair Display', var(--display); font-style: italic; font-weight: 900; font-size: 1.2rem; line-height: 1.3; }
+.mass-refs { display: block; font-family: var(--display); font-style: italic; color: var(--accent); }
+.wiki-link { font-family: var(--label); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); text-decoration: none; border: 1px solid var(--rule); border-radius: 999px; padding: 0.05rem 0.5rem; }
+.src-home { align-self: flex-start; margin-top: 0.3rem; display: inline-block; }
+.wiki-link:hover { text-decoration: underline; }
+.mass-refs { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.15rem 0; }
+details.ref { display: inline-block; }
+details.ref > summary { list-style: none; cursor: pointer; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+details.ref > summary::-webkit-details-marker { display: none; }
+details.ref > summary::after { content: " ▾"; font-style: normal; font-size: 0.8em; }
+details.ref[open] { flex-basis: 100%; }
+details.ref[open] > summary::after { content: " ▴"; }
+.ref-pop { display: block; margin: 0.35rem 0 0.5rem; padding: 0.6rem 0.75rem; border-left: 3px solid var(--alert-bg); background: var(--panel-bg); border-radius: 4px; font-style: normal; color: var(--fg); font-family: var(--body, inherit); }
+.ref-about { display: block; margin-bottom: 0.4rem; }
+.ref-read { font-weight: 600; color: var(--alert-bg) !important; text-decoration: none !important; }
+.ref-sep { white-space: pre; }
+details.ref[open] + .ref-sep { display: none; }
+.mass-refs a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+.red-a { color: var(--warn); }
+li.has-thumb { overflow: hidden; }
+img.vw-thumb { float: left; width: 46px; height: 46px; object-fit: cover; object-position: center 20%; border-radius: 50%; margin: 0.15rem 0.6rem 0.3rem 0; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--rule); }
+details.sec.sec-five { border-top: 2px solid var(--fg); padding-top: 0.9rem; margin-bottom: 0.6rem; }
+details.sec.sec-five > summary { padding: 0.9rem 2.6rem 0.9rem 1rem; background: var(--five-bg); border-radius: 8px; }
+details.sec.sec-five > summary .sec-title { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.03em; }
+details.sec.sec-five > .sec-body { background: var(--five-bg); border-radius: 0 0 8px 8px; padding: 0.2rem 1rem 0.8rem; margin-top: -6px; }
+ul.dive-keys { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 1.2em; font-weight: 500; color: #111; margin: 0 0 1.3rem; padding: 1rem 1.1rem 1rem 2.1rem; background: #fff6c9; border-left: 5px solid var(--alert-bg); border-radius: 8px; line-height: 1.5; }
+ul.dive-keys li { margin: 0.4rem 0 0.8rem; }
+ul.dive-keys strong { font-weight: 800; color: var(--alert-bg); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) ul.dive-keys { background: #3a3418; color: #fff; } }
+:root[data-theme="dark"] ul.dive-keys { background: #3a3418; color: #fff; }
+.masthead-tag { align-self: flex-start; margin-top: 0.2rem; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; font-size: 0.95rem; color: var(--fg); }
+.masthead-tag strong { font-weight: 600; }
+.church-tag { display: inline-block; background: var(--alert-bg); color: #fff; border-radius: 6px; padding: 0.15rem 0.6rem; }
+.church-tag strong { font-style: normal; }
+.mass-date { display: block; font-family: 'Playfair Display', var(--display); font-style: italic; font-weight: 400; font-size: 1.1rem; color: var(--muted); margin: -0.15rem 0 0.45rem; }
+.mass-label { display: block; font-family: var(--display); font-weight: 600; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.35rem; }
+.sec-title { font-family: var(--display); font-weight: 600; font-size: 1.02rem; }
+/* Red boxes: clean upright sans in pure white (Johnny, 2026-10-05). */
+.mass-summary, .church-tag, .church-tag * { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif !important; font-style: normal !important; color: #ffffff !important; }
+.mass-summary { font-weight: 700 !important; font-size: 1.12rem !important; line-height: 1.4 !important; letter-spacing: -0.005em; }
+.church-tag { font-weight: 500; font-size: 0.95rem; }
+.church-tag strong { font-weight: 700; }
+.sec-lead > summary .sec-title { font-family: var(--display); font-weight: 600; font-size: clamp(1.45rem, 4.6vw, 1.95rem); line-height: 1.2; color: var(--fg); text-transform: none; letter-spacing: 0; }
+details.sec.sec-lead > summary { padding: 1.1rem 2.6rem 1.1rem 1rem; background: var(--theme-bg); border-radius: 8px; }
+details.sec.sec-lead > summary::after { right: 1rem; top: 1rem; }
+details.sec.sec-five > summary::after { right: 1rem; top: 0.85rem; }
+details.sec.sec-group > summary { padding: 1.1rem 2.6rem 1.1rem 1rem; background: var(--sources-bg); border-radius: 8px; }
+details.sec.sec-group > summary::after { right: 1rem; top: 1rem; }
+details.sec-group { border-top: none; margin-top: 0.6rem; }
+details.sec-sources, details.sec-thread, details.sec-voices, details.sec-history { margin-top: 1rem; }
+details.sec.sec-group > summary { background: var(--trad-bg); }
+details.sec.sec-thread > summary { background: var(--news-bg); }
+details.sec.sec-sources > summary { background: var(--mcc-bg); }
+details.sec.sec-voices > summary { background: var(--voices-bg); }
+details.sec.sec-history > summary { background: var(--history-bg); }
+.sec-group > summary .sec-title { font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.03em; }
+.lower-panel { background: var(--panel-bg); border-radius: 12px; padding: 0.4rem 0.8rem 0.8rem; margin-top: 1rem; }
+.group-body { padding-left: 0.9rem; border-left: 2px solid var(--rule); }
+.group-body > details.sec:first-child { border-top: none; }
+.dive-preview { flex-basis: 100%; font-size: 0.95rem; line-height: 1.5; color: var(--muted); max-height: 4.5em; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, #000 25%, transparent); mask-image: linear-gradient(to bottom, #000 25%, transparent); }
+details[open] > summary > .dive-preview { display: none; }
+details.sec-lead > .sec-body { font-size: 0.92em; }
+details.sec-lead { border-top: 2px solid var(--fg); border-bottom: 2px solid var(--fg); padding: 0.9rem 0; margin-bottom: 0.6rem; }
+.sec-lead > summary .sec-sub { flex-basis: 100%; font-family: var(--display); font-style: italic; text-transform: none; letter-spacing: 0; font-size: 0.95rem; }
+.sec-sub { font-family: var(--label); font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); }
+.sec-body { padding-bottom: 1.1rem; min-width: 0; }
+.sec-body p { margin: 0 0 0.8rem; }
+.sec-body ul { margin: 0 0 0.8rem; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.sec-theme { background: var(--accent-soft); border-top: none !important; border-radius: 10px; padding-inline: 1rem; }
+.sec-theme > summary { flex-direction: column; align-items: flex-start !important; gap: 0.1rem !important; }
+.sec-label { font-family: var(--label); font-weight: 600; font-size: 0.76rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.sec-theme .sec-title { font-size: 1.5rem; }
+.sub-drop { border-bottom: 1px dashed var(--rule); margin-bottom: 0.4rem; }
+.sub-drop > summary { list-style: none; cursor: pointer; position: relative; padding: 0.4rem 1.6rem 0.5rem 0; margin: 0; }
+.sub-drop > summary::after { content: "+"; position: absolute; right: 0.2rem; top: 0.15rem; font-size: 1.1rem; color: var(--accent); transition: transform .2s; }
+.sub-drop[open] > summary::after { transform: rotate(45deg); }
+.src { border-top: 1px dashed var(--rule); }
+.src:first-of-type { border-top: none; }
+.src > summary, .src-flat { list-style: none; cursor: pointer; display: grid; grid-template-columns: 1.8rem 1fr; gap: 0.6rem; padding: 0.7rem 0; }
+.src-flat { cursor: default; }
+.src-n { font-family: var(--label); font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; padding-top: 0.15rem; }
+.src-head { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.src-name { font-weight: 600; }
+.src-meta { font-family: var(--label); font-size: 0.82rem; color: var(--muted); }
+.src-gist, .src-flat-text { color: var(--muted); font-size: 0.97rem; }
+.src[open] .src-gist { color: var(--fg); }
+.src-body { padding: 0 0 0.6rem 2.4rem; }
+a { color: var(--accent); text-underline-offset: 2px; }
+footer { border-top: 1px solid var(--rule); padding-top: 1rem; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.88rem; color: var(--muted); }
+.foot-label { font-family: var(--label); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.75rem; margin-right: 0.3rem; }
+.links { overflow-wrap: anywhere; margin: 0; }
+.note { margin: 0; font-style: italic; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+/* Deeper Daive header as a red box with white Inter lettering (live page edit, 2026-10-05). */
+details.sec.sec-lead > summary { background: var(--alert-bg) !important; }
+details.sec.sec-lead > summary .sec-title, details.sec.sec-lead > summary .sec-title .red-a { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; font-weight: 800; color: #ffffff !important; }
+/* On the red Deeper Dave box, red letters would vanish, so its A's and I's show in gold (2026-10-15). */
+details.sec.sec-lead > summary .sec-title .red-a { color: #ffd54f !important; }
+details.sec.sec-lead > summary .dive-preview { color: rgba(255,255,255,0.85); }
+details.sec.sec-lead > summary::after { color: #ffffff; }
+a.mass-summary-link { text-decoration: none !important; }
+a.mass-summary-link:hover { filter: brightness(1.08); }
+.summary-credit { display: block; margin-top: 0.5rem; font-weight: 500; font-size: 0.85rem; text-decoration: underline; text-underline-offset: 2px; }
+.box-date { position: absolute; top: 0.3rem; right: 0.9rem; font-family: 'Inter', system-ui, sans-serif; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.03em; color: var(--muted); white-space: nowrap; }
+details.sec-five > summary, details.sec-lead > summary, details.sec-group > summary { padding-top: 1.35rem !important; }
+details.sec-five > summary::after, details.sec-lead > summary::after, details.sec-group > summary::after { top: 1.3rem !important; }
+details.sec.sec-lead > summary .box-date { color: rgba(255,255,255,0.85); }
+.mass-box { position: relative; padding-top: 1.4rem !important; }
+</style>
+<div class="wrap">
+  <header>
+    <div class="topline"><p class="disclaimer">This site and its name are under constant renovation.</p><span class="top-brand">The Meditari Safari</span></div>
+  <div class="masthead">
+      <span class="corner-date">Friday, November 27, 2026</span>
+      <h1><span class="red-a">A</span> DEEPER D<span class="red-a">A</span>VE</h1>
+      <span class="masthead-tag"><strong>An exploration of human wisdom starting with today's lectionary.</strong></span>
+    </div>
+    <div class="tools"><button type="button" id="open-all">Open all</button><button type="button" id="close-all">Close all</button></div>
+  </header>
+  <div class="mass-box"><span class="box-date">November 27th, 2026</span><span class="mass-refs"><a href="https://www.biblegateway.com/passage/?search=Psalm+80%3A1-7%2C+17-19&amp;version=NRSVUE" target="_blank" rel="noopener">Psalm 80:1–7, 17–19</a><span class="ref-sep"> · </span><details class="ref"><summary>Zechariah 14:1–9</summary><div class="ref-pop"><span class="ref-about"><strong>Old Testament</strong>, the Book of Zechariah, its final chapter. The Day of the Lord: God stands on the Mount of Olives, light comes at evening, and living waters flow east and west.</span><a class="ref-read" href="https://www.biblegateway.com/passage/?search=Zechariah+14%3A1-9&amp;version=NRSVUE" target="_blank" rel="noopener">Read the passage ↗</a></div></details><span class="ref-sep"> · </span><details class="ref"><summary>1 Thessalonians 4:1–18</summary><div class="ref-pop"><span class="ref-about"><strong>New Testament</strong>, Paul's First Letter to the Thessalonians, probably his earliest letter. A call to quiet, loving lives, and comfort for those who mourn the dead.</span><a class="ref-read" href="https://www.biblegateway.com/passage/?search=1+Thessalonians+4%3A1-18&amp;version=NRSVUE" target="_blank" rel="noopener">Read the passage ↗</a></div></details></span><span class="mass-summary">“After the long dark, God promises light at evening, living water and a reign over all the earth, and Paul tells grieving people they have hope.”</span></div><details class="sec sec-five" id="five-minute-version"><summary><span class="box-date">November 27th, 2026</span><span class="sec-title">The f<span class="red-a">i</span>ve-m<span class="red-a">i</span>nute vers<span class="red-a">i</span>on</span></summary><div class="sec-body"><p><strong>The readings:</strong> The church year is almost over, and the readings look to the end of all things. Zechariah sees a strange day, neither day nor night, when at evening time there will be light. Living water flows out of Jerusalem both ways, in summer and in winter, and the Lord becomes king over all the earth (paraphrased). Psalm 80 prays, "Restore us, O God; let your face shine." Paul writes to a young church grieving its dead: don't grieve as those without hope; we will be with the Lord forever; encourage one another (paraphrased).</p>
+<p><strong>What it means:</strong> Evening is when light usually leaves. Zechariah promises the reverse: light that arrives just when you expect the dark. In the shortest days of the year, two days before Advent, that's the hope Christians keep.</p>
+<p><strong>Across the traditions:</strong> the same truth, in other words.</p>
+<ul><li><strong>Judaism:</strong> Tonight Jews light Shabbat candles as the sun sets, light at evening (Chicago: 4:03 PM).</li><li><strong>Islam:</strong> Friday is Jumu'ah, the day of congregational prayer.</li><li><strong>Bahá'í:</strong> Tomorrow Bahá'ís mark the Ascension of 'Abdu'l-Bahá, keeping a vigil in the small hours.</li><li><strong>Seneca:</strong> He urged that each evening we be able to say, I have lived. (<em>Letters</em> 12, paraphrased.)</li></ul>
+<p><strong>Carry it today:</strong> Where are you waiting for light?</p></div></details><details class="sec sec-lead" id="today-s-theme-in-christianity"><summary><span class="box-date">November 27th, 2026</span><span class="sec-title"><span class="red-a">A</span> DEEPER D<span class="red-a">A</span>VE</span><span class="dive-preview">Light at evening: Not day, not night, but light. Living water: Flowing east and west, summer and winter. One Lord: King over all the earth. Not without hope: Comfort for those who grieve. Yesterday, the psalmist asked God's face to shine. Today, Zechariah promises light where we least expect it. 1. The Day of the Lord </span></summary><div class="sec-body"><details class="sub-drop"><summary class="sub-h">Today's readings</summary><div class="sub-drop-body"><ul><li><strong>Protestant (RCL):</strong> Psalm 80:1–7, 17–19 · Zechariah 14:1–9 · 1 Thessalonians 4:1–18. "Restore us, O God; let your face shine, that we may be saved." Zechariah sees a day that is neither day nor night, when at evening time there will be light, living water will flow from Jerusalem in summer and winter, and the Lord will be king over all the earth (paraphrased). Paul tells the Thessalonians not to grieve like those who have no hope, for we will be with the Lord forever, and to encourage one another with these words (paraphrased).</li><li><strong>Catholic:</strong> Friday of the 34th week in Ordinary Time. Revelation 20:1–4, 11–21:2 (a new heaven and a new earth) · Psalm 84 ("Here God lives among his people") · Luke 21:29–33 (the parable of the fig tree).</li><li><strong>Episcopal:</strong> Morning Prayer: Psalms 140, 142 · Zechariah 14:1–11 · Romans 15:7–13 · Luke 19:28–40 (the entry into Jerusalem).</li><li><strong>Orthodox:</strong> Commemoration of the <strong>Greatmartyr James the Persian</strong> (421), <strong>St. Palladius of Thessalonica</strong>, and the <strong>"Of the Sign" icon</strong> of the Mother of God at Novgorod (1170). 1 Timothy 4:4–8, 16 · Luke 19:12–28.</li><li><strong>Divine Office:</strong> Friday of the 34th week in Ordinary Time. Morning Prayer: Psalm 51 ("O God, you will not spurn a humbled, contrite heart"), the Canticle of Habakkuk ("In spite of your anger, Lord, have compassion"), Psalm 147 ("O praise the Lord, Jerusalem"). Benedictus antiphon: "Through the loving mercy of our God, the Rising Sun has come to visit us."</li><li><strong>Rosary:</strong> Sorrowful Mysteries (Friday).</li><li><strong>Moravian Watchword:</strong> (couldn't confirm today; the site still showed Thursday's texts.)</li><li>Friday after Christ the King (Proper 29, Year A). The church year ends tomorrow; <strong>Advent begins Sunday.</strong> Tomorrow's RCL readings: Psalm 80:1–7, 17–19 · Micah 2:1–13 · Matthew 24:15–31 (the Shepherd gathers the remnant; the Son of Man comes with power).</li></ul></div></details><h3 class="sub-h">The theme</h3><ul class="dive-keys"><li><strong>Light at evening:</strong> Not day, not night, but light.</li><li><strong>Living water:</strong> Flowing east and west, summer and winter.</li><li><strong>One Lord:</strong> King over all the earth.</li><li><strong>Not without hope:</strong> Comfort for those who grieve.</li></ul>
+<p>Yesterday, the psalmist asked God's face to shine. Today, Zechariah promises light where we least expect it.</p>
+<p><strong>1. The Day of the Lord</strong></p>
+<p>Zechariah sees the nations gathered against Jerusalem, and God standing on the Mount of Olives, which splits in two (paraphrased).</p>
+<ul><li><strong>The end of history:</strong> The prophets' "day of the Lord" is when God sets everything right.</li><li><strong>Mount of Olives:</strong> The same hill where, in Acts, Jesus ascends and the angels promise he will return.</li></ul>
+<p><strong>2. Light at Evening</strong></p>
+<p>Zechariah says there will be one continuous day, known to the Lord, neither day nor night, and at evening time there will be light (Zechariah 14:7, paraphrased).</p>
+<ul><li><strong>A reversal:</strong> Evening is when darkness falls; here light rises.</li><li><strong>Advent hope:</strong> The church will light its first candle on Sunday.</li></ul>
+<p><strong>3. Living Water</strong></p>
+<p>On that day living water will flow out from Jerusalem, half to the eastern sea and half to the western, in summer and in winter (paraphrased).</p>
+<ul><li><strong>Never dries up:</strong> Most streams in Judea run dry in summer; this one never does.</li><li><strong>Echoes:</strong> Ezekiel's river from the Temple, and Jesus' promise of living water in John 4.</li></ul>
+<p><strong>4. One Lord, One Name</strong></p>
+<p>The Lord will become king over all the earth; on that day the Lord will be one and his name one (Zechariah 14:9, paraphrased).</p>
+<ul><li><strong>The Shema:</strong> It echoes Israel's great prayer, that the Lord is one (Deuteronomy 6:4, paraphrased).</li><li><strong>Christ the King:</strong> Last Sunday's feast, still echoing at week's end.</li></ul>
+<p><strong>5. Not Without Hope</strong></p>
+<p>Paul tells the Thessalonians not to grieve like those who have no hope, because those who have died in Christ will rise, and we will be with the Lord forever. Therefore, he says, encourage one another (1 Thessalonians 4:18, paraphrased). After a holiday with empty chairs, that's a word for today.</p><details class="sub-drop sub-christian"><summary class="sub-h">For Christians today</summary><div class="sub-drop-body"><p>The last days of the church year point to the end and the beginning.</p>
+<ul><li><strong>Catholic:</strong> Today's Gospel says the fig tree's new leaves show summer is near; Revelation shows a new heaven and a new earth.</li><li><strong>Episcopal:</strong> Morning Prayer reads Jesus' entry into Jerusalem, a reading that returns on Palm Sunday and in some traditions on Advent Sunday.</li><li><strong>Orthodox:</strong> The Nativity Fast, begun November 15, continues toward Christmas.</li><li><strong>Protestant and evangelical:</strong> Many churches are hanging Advent wreaths this weekend.</li><li><strong>Funerals:</strong> 1 Thessalonians 4 is one of the most common readings at Christian funerals.</li></ul>
+<p><strong>Carry it today:</strong> Before dark tonight, light a candle and name one hope.</p></div></details></div></details><div class="lower-panel"><details class="sec sec-group" id="traditions"><summary><span class="box-date">November 27th, 2026</span><span class="sec-title">How <span class="red-a">i</span>t rel<span class="red-a">a</span>tes to tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on<span class="red-a">a</span>l rel<span class="red-a">i</span>g<span class="red-a">i</span>ons</span><span class="dive-preview">Bahá'í Tradition Today's readings through a Bahá'í lens: the passing of 'Abdu'l-Bahá. Ascension of 'Abdu'l-Bahá: Tomorrow, 6 Qawl, Bahá'ís remember 'Abdu'l-Bahá's death in Haifa in 1921, traditionally with prayers at 1 a.m. Hope in death: Bahá'ís teach that the soul continues to progress after death toward God, much li</span></summary><div class="sec-body group-body"><details class="sec" id="bah-tradition"><summary><span class="sec-title">B<span class="red-a">a</span>há'í Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Bah%C3%A1%CA%BC%C3%AD_Faith" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through a Bahá'í lens: the passing of 'Abdu'l-Bahá.</em></p>
+<ul><li><strong>Ascension of 'Abdu'l-Bahá:</strong> Tomorrow, 6 Qawl, Bahá'ís remember 'Abdu'l-Bahá's death in Haifa in 1921, traditionally with prayers at 1 a.m.</li><li><strong>Hope in death:</strong> Bahá'ís teach that the soul continues to progress after death toward God, much like Paul's comfort today.</li></ul>
+<p>5 Qawl 183 B.E., the fifth day of the month of Speech. (B.E. means "Bahá'í Era," counted from 1844.)</p></div></details><details class="sec" id="hindu-jain-tradition"><summary><span class="sec-title">H<span class="red-a">i</span>ndu &amp; J<span class="red-a">a</span><span class="red-a">i</span>n Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Hinduism" target="_blank" rel="noopener">Hindu wiki ↗</a><a class="wiki-link" href="https://en.wikipedia.org/wiki/Jainism" target="_blank" rel="noopener">Jain wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through Hindu and Jain eyes: the undying self.</em></p>
+<ul><li><strong>The Hindu lens:</strong> The Gita says the self is not killed when the body is killed (2:20, paraphrased), a comfort like Paul's.</li><li><strong>The Jain lens:</strong> Jains teach that the soul, freed of karma, rises to the top of the universe, pure light.</li></ul>
+<p>Today is <strong>Krishna Tritiya</strong>, the third day after the full moon, turning to <strong>Chaturthi</strong> in the morning, with the moon moving from <strong>Ardra</strong> into <strong>Punarvasu</strong> (per Indian calendars; exact Chicago times couldn't be confirmed). Month: <strong>Margashirsha</strong> (northern reckoning). Today is <strong>Kanaka Dasa Jayanti</strong>, honoring the 16th-century poet-saint of Karnataka, a shepherd's son who sang to Krishna.</p>
+<p><strong>What the words mean</strong> (all Sanskrit):</p>
+<ul><li><strong>Punarvasu:</strong> "good again," the star of renewal.</li><li><strong>Chaturthi:</strong> "the fourth."</li><li><strong>Jayanti:</strong> "birthday" or anniversary.</li></ul></div></details><details class="sec" id="sikh-tradition"><summary><span class="sec-title">S<span class="red-a">i</span>kh Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Sikhism" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through a Sikh lens: death and the One.</em></p>
+<ul><li><strong>One Name:</strong> Like Zechariah's one name, the Mul Mantar begins Ik Onkar, "One Creator."</li><li><strong>Death:</strong> Sikh funeral prayers sing God's praise rather than mourn, trusting the soul's return to God.</li></ul>
+<p>Hukamnama (the verse drawn each morning from the Guru Granth Sahib at the Golden Temple and read by Sikhs worldwide): (couldn't confirm today; SikhNet still showed Thursday's verse.)</p></div></details><details class="sec" id="islamic-tradition"><summary><span class="sec-title"><span class="red-a">I</span>sl<span class="red-a">a</span>m<span class="red-a">i</span>c Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Islam" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through an Islamic lens: light upon light.</em></p>
+<ul><li><strong>The Light Verse:</strong> The Qur'an says God is the light of the heavens and the earth, light upon light (24:35, paraphrased).</li><li><strong>Jumu'ah:</strong> Friday prayer, and many Muslims read Surah al-Kahf on Fridays.</li></ul>
+<p>17 Jumada al-Akhirah 1448 (may differ by a day where the moon is sighted locally).</p></div></details><details class="sec" id="jewish-tradition"><summary><span class="sec-title">Jew<span class="red-a">i</span>sh Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Judaism" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through a Jewish lens: light at evening.</em></p>
+<ul><li><strong>Shabbat candles:</strong> At sunset tonight, the lights are lit as day turns to evening (Chicago: candle lighting 4:03 PM, havdalah Saturday 5:07 PM).</li><li><strong>Zechariah 14:9:</strong> The verse about the Lord being one and his name one closes the Aleinu prayer, said at the end of every service (paraphrased).</li></ul>
+<p>17 Kislev 5787.</p>
+<ul><li><strong>Torah:</strong> This week's portion is <strong>Vayishlach</strong> (Genesis 32:4–36:43), read tomorrow on Shabbat. Haftarah: Obadiah 1:1–21. All movements read the same portion; many Conservative and Reform congregations read part of it on a triennial cycle.</li><li><strong>Daily prayers:</strong> Friday, no Torah reading at Shacharit; Kabbalat Shabbat tonight. Conservative and Reform follow the same.</li><li><strong>Study cycles:</strong> Daf Yomi (one page of Talmud a day, worldwide) Arakhin 10 · Tehillim for the 17th of the month: Psalms 83–87 · Rambam: Laws of Forbidden Foods, ch. 17.</li></ul></div></details><details class="sec" id="buddhist-tradition"><summary><span class="sec-title">Buddh<span class="red-a">i</span>st Tr<span class="red-a">a</span>d<span class="red-a">i</span>t<span class="red-a">i</span>on</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Buddhism" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><em>Today's readings through a Buddhist lens: impermanence.</em></p>
+<ul><li><strong>Anicca:</strong> All things that arise pass away; the Buddha's last words urged his followers to strive on with diligence (<em>Mahaparinibbana Sutta</em>, paraphrased).</li><li><strong>A lamp:</strong> He told them to be a lamp, a refuge, unto themselves.</li></ul>
+<p>The next uposatha is the half moon, around December 1 (per the Wat Metta calendar).</p></div></details><details class="sec" id="stoicism"><summary><span class="sec-title">Sto<span class="red-a">i</span>c<span class="red-a">i</span>sm</span><a class="wiki-link" href="https://en.wikipedia.org/wiki/Stoicism" target="_blank" rel="noopener">Wiki ↗</a></summary><div class="sec-body"><p><strong>What is Stoicism?</strong> A philosophy founded by Zeno of Citium around 300 BC in Athens, named for the painted porch (<em>stoa</em>) where he taught. Its most famous teachers are Epictetus, born into slavery; Seneca, a Roman statesman; and the emperor Marcus Aurelius. The Stoics taught that we can't control events, only our judgments and choices. Their four virtues are wisdom, courage, justice and self-control.</p>
+<p>Seneca wrote that we should go to sleep each night content, saying, I have lived, I have run the course fortune gave me; if God adds tomorrow, receive it gladly. (<em>Letters to Lucilius</em> 12, paraphrased.) On the last days of the church year, Seneca's evening practice fits. Treat today as complete, and tomorrow as a gift.</p></div></details></div></details><details class="sec sec-group sec-history" id="historical-context-what-we-know"><summary><span class="box-date">November 27th, 2026</span><span class="sec-title">H<span class="red-a">i</span>stor<span class="red-a">i</span>c<span class="red-a">a</span>l context: wh<span class="red-a">a</span>t we know</span><span class="dive-preview">The time. Zechariah 9–14 is usually dated later than chapters 1–8 (about 520 BC), perhaps the 5th or 4th century BC. 1 Thessalonians was written around AD 50, likely the oldest book in the New Testament. What scholars broadly agree on. Zechariah 14 is apocalyptic: it uses vivid images for God's final victory. Paul wrot</span></summary><div class="sec-body"><p><strong>The time.</strong> Zechariah 9–14 is usually dated later than chapters 1–8 (about 520 BC), perhaps the 5th or 4th century BC. 1 Thessalonians was written around AD 50, likely the oldest book in the New Testament.</p>
+<p><strong>What scholars broadly agree on.</strong> Zechariah 14 is apocalyptic: it uses vivid images for God's final victory. Paul wrote 1 Thessalonians from Corinth to a young church he had left in a hurry.</p>
+<p><strong>What it meant then.</strong> For a small, struggling Jewish community, Zechariah promised that God's reign would reach the whole earth. For the Thessalonians, Paul answered a painful question: what about believers who die before Christ returns?</p>
+<p><strong>The allegorical readings.</strong> The fathers read the living water as baptism and the Spirit, and the light at evening as Christ, who came in the evening of the ages.</p>
+<p><strong>What's debated or unknown.</strong> Who wrote Zechariah 9–14, and how literally Paul expected the events of 1 Thessalonians 4.</p></div></details><details class="sec sec-group sec-voices" id="voices-of-wisdom"><summary><span class="box-date">November 27th, 2026</span><span class="sec-title">Vo<span class="red-a">i</span>ces of W<span class="red-a">i</span>sdom</span><span class="dive-preview">Joseph Campbell : He taught that the darkest moment of the journey is often the threshold of new life. (Paraphrased.) Light at evening. Eckhart Tolle : He teaches that loss can open a doorway to a deeper peace. (Our summary of his ideas, not his words.) Not without hope. Thich Nhat Hanh : He taught that nothing is trul</span></summary><div class="sec-body"><ul><li><strong><a href="https://en.wikipedia.org/wiki/Joseph_Campbell" target="_blank" rel="noopener">Joseph Campbell</a>:</strong> He taught that the darkest moment of the journey is often the threshold of new life. (Paraphrased.) Light at evening.</li><li><strong><a href="https://en.wikipedia.org/wiki/Eckhart_Tolle" target="_blank" rel="noopener">Eckhart Tolle</a>:</strong> He teaches that loss can open a doorway to a deeper peace. (Our summary of his ideas, not his words.) Not without hope.</li><li><strong><a href="https://en.wikipedia.org/wiki/Thich_Nhat_Hanh" target="_blank" rel="noopener">Thich Nhat Hanh</a>:</strong> He taught that nothing is truly lost; a cloud doesn't die, it becomes rain. (Paraphrased.) Those who have died.</li><li><strong><a href="https://en.wikipedia.org/wiki/George_Gurdjieff" target="_blank" rel="noopener">Gurdjieff</a>:</strong> He taught that we must remember our own death to wake up to life. (Paraphrased.) The last days.</li><li><strong><a href="https://en.wikipedia.org/wiki/Tao_Te_Ching" target="_blank" rel="noopener">Tao Te Ching</a>:</strong> It says water benefits all things and doesn't compete. (Ch. 8, paraphrased.) Living water.</li><li><strong><a href="https://en.wikipedia.org/wiki/Martin_Luther_King_Jr." target="_blank" rel="noopener">Martin Luther King Jr.</a>:</strong> He said that only when it is dark enough can you see the stars. (Paraphrased.) Light at evening.</li><li><strong><a href="https://en.wikipedia.org/wiki/Confucius" target="_blank" rel="noopener">Confucius</a>:</strong> He said that if we don't yet understand life, we can't understand death. (<em>Analects</em> 11.12, paraphrased.) Hope and grief.</li><li><strong><a href="https://en.wikipedia.org/wiki/Nelson_Mandela" target="_blank" rel="noopener">Nelson Mandela</a>:</strong> He wrote that he never lost hope, even in the darkest years. (<em>Long Walk to Freedom</em>, paraphrased.) Waiting for light.</li><li><strong><a href="https://en.wikipedia.org/wiki/Seneca_the_Younger" target="_blank" rel="noopener">Seneca</a>:</strong> He taught to end each day as if life were complete, saying at evening, I have lived. (<em>Letters</em> 12, paraphrased.) Evening.</li><li><strong><a href="https://en.wikipedia.org/wiki/Ram_Dass" target="_blank" rel="noopener">Ram Dass</a>:</strong> He taught that death is like taking off a tight shoe. (Paraphrased.) Not without hope.</li><li><strong><a href="https://en.wikipedia.org/wiki/The_Buddha" target="_blank" rel="noopener">Buddha</a>:</strong> He taught, be a lamp unto yourself. (<em>Mahaparinibbana Sutta</em>, paraphrased.) Light.</li><li><strong><a href="https://en.wikipedia.org/wiki/Bhagavad_Gita" target="_blank" rel="noopener">Bhagavad Gita</a>:</strong> It says the soul is never born and never dies. (2:20, paraphrased.) Hope for the dead.</li><li><strong><a href="https://en.wikipedia.org/wiki/Gregory_of_Nyssa" target="_blank" rel="noopener">Gregory of Nyssa</a>:</strong> He taught that God draws us from darkness into an ever-brighter light. (<em>Life of Moses</em>, paraphrased.) Light at evening.</li><li><strong><a href="https://en.wikipedia.org/wiki/Rumi" target="_blank" rel="noopener">Rumi</a>:</strong> He wrote that when the sun sets in one place it rises in another. (Attributed, paraphrased.) Evening light.</li><li><strong><a href="https://en.wikipedia.org/wiki/Desert_Fathers" target="_blank" rel="noopener">Desert Fathers</a>:</strong> The elders kept death before their eyes, as a teacher. (<em>Sayings</em>, paraphrased.) The last days.</li><li><strong><a href="https://en.wikipedia.org/wiki/Kahlil_Gibran" target="_blank" rel="noopener">Kahlil Gibran</a>:</strong> He wrote that life and death are one, as the river and the sea are one. (<em>The Prophet</em>, "On Death," paraphrased.) Living water.</li><li><strong><a href="https://en.wikipedia.org/wiki/Viktor_Frankl" target="_blank" rel="noopener">Viktor Frankl</a>:</strong> He wrote that what we have lived through, no power on earth can take from us. (<em>Man's Search for Meaning</em>, paraphrased.) Comfort in grief.</li><li><strong><a href="https://en.wikipedia.org/wiki/Alan_Watts" target="_blank" rel="noopener">Alan Watts</a>:</strong> He taught that the dark and the light go together, like the two sides of a coin. (Paraphrased.) Neither day nor night.</li><li><strong>Pray As You Go:</strong> Today's session, "My words will not pass away," follows the Catholic Gospel: heaven and earth will pass, but Jesus' words remain.</li><li><strong>AA:</strong> "The Perils of the Limelight" says the program shines through its principles, not through any one person, light that doesn't need a spotlight.</li></ul></div></details><details class="sec sec-group sec-thread" id="daily-sources"><summary><span class="box-date">November 27th, 2026</span><span class="sec-title">Newsletter d<span class="red-a">a</span><span class="red-a">i</span>ly bre<span class="red-a">a</span>kdowns</span><span class="dive-preview">1 Richard Rohr / CAC (couldn't confirm today; the site's meditation pages didn't load, thirty-first day running.) Read &amp; subscribe ↗ 2 SSJE "Brother, Give Us a Word" (couldn't confirm today; no word posted yet. Yesterday's was "Thanksgiving": "Start every morning with thanksgiving.") Read &amp; subscribe ↗ 3 Henri Nouwen (</span></summary><div class="sec-body"><div class="src src-flat"><span class="src-n">1</span><div class="src-head"><span class="src-name">Richard Rohr / CAC</span> <span class="src-flat-text">(couldn't confirm today; the site's meditation pages didn't load, thirty-first day running.)</span><a class="wiki-link src-home" href="https://cac.org/daily-meditations/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></div></div><div class="src src-flat"><span class="src-n">2</span><div class="src-head"><span class="src-name">SSJE "Brother, Give Us a Word"</span> <span class="src-flat-text">(couldn't confirm today; no word posted yet. Yesterday's was "Thanksgiving": "Start every morning with thanksgiving.")</span><a class="wiki-link src-home" href="https://www.ssje.org/word/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></div></div><div class="src src-flat"><span class="src-n">3</span><div class="src-head"><span class="src-name">Henri Nouwen</span> <span class="src-flat-text">(couldn't confirm today; the daily meditation is email-only and not posted on the site.)</span><a class="wiki-link src-home" href="https://henrinouwen.org/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></div></div><div class="src src-flat"><span class="src-n">4</span><div class="src-head"><span class="src-name">Inward/Outward</span> <span class="src-flat-text">(no new weekly reflection yet; the latest is still last Friday's "When Did We See You?", which opens, "Learning to see is the work of a lifetime.")</span><a class="wiki-link src-home" href="https://inwardoutward.org/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></div></div><details class="src"><summary><span class="src-n">5</span><span class="src-head"><span class="src-name">Pray As You Go: "My words will not pass away"</span><span class="src-gist">Today's session prays with Luke 21:29–33, the fig tree and Jesus' promise that his words will outlast heaven and earth.</span></span></summary><div class="src-body"><p><a class="wiki-link src-home" href="https://pray-as-you-go.org/" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></p></div></details><div class="src src-flat"><span class="src-n">6</span><div class="src-head"><span class="src-name">Verse &amp; Voice</span> <span class="src-flat-text">(couldn't confirm today; the issue from one year ago, November 27, 2025, didn't load. The year-ago pages haven't loaded since November 18.)</span><a class="wiki-link src-home" href="https://sojo.net/daily-wisdom" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></div></div><details class="src"><summary><span class="src-n">7</span><span class="src-head"><span class="src-name">AA Daily Reflections: "The Perils of the Limelight"</span><span class="src-meta">(summarized in our own words)</span><span class="src-gist">Anonymity is a practice of humility, guarding against pride. The Fellowship earns its good name through its principles and its work, not through members promoting themselves.</span></span></summary><div class="src-body"><p><a class="wiki-link src-home" href="https://www.aa.org/daily-reflection" target="_blank" rel="noopener">Read &amp; subscribe ↗</a></p></div></details></div></details><details class="sec sec-group sec-sources" id="today-s-thread"><summary><span class="box-date">November 27th, 2026</span><span class="sec-title">The “Wh<span class="red-a">a</span>t would M<span class="red-a">a</span>tthew McCon<span class="red-a">a</span>ughey s<span class="red-a">a</span>y?” sect<span class="red-a">i</span>on</span><span class="dive-preview">Matthew McConaughey : (Imagined, in his voice. He never said this.) "Light at evening time, man. Just when you think the sun's done, there it is. Day after Thanksgiving, leftovers in the fridge, Advent around the corner. Keep the porch light on. Alright, alright, alright."</span></summary><div class="sec-body"><ul><li><strong><a href="https://en.wikipedia.org/wiki/Matthew_McConaughey" target="_blank" rel="noopener">Matthew McConaughey</a>:</strong> <em>(Imagined, in his voice. He never said this.)</em> "Light at evening time, man. Just when you think the sun's done, there it is. Day after Thanksgiving, leftovers in the fridge, Advent around the corner. Keep the porch light on. Alright, alright, alright."</li></ul></div></details></div>
+  <footer><p class="links"><span class="foot-label">Past days</span> <a href="https://meditarisafari.github.io/archive/" target="_blank" rel="noopener">The archive ↗</a></p><p class="links"><span class="foot-label">Sources</span> <a href="https://www.biblegateway.com/reading-plans/revised-common-lectionary-semicontinuous/2026/11/27" target="_blank" rel="noopener">RCL</a> · <a href="https://www.biblegateway.com/passage/?search=Psalm+80%3A1-7%2C17-19%3BZechariah+14%3A1-9%3B1+Thessalonians+4%3A1-18&amp;version=NRSVUE" target="_blank" rel="noopener">RCL texts (NRSVUE)</a> · <a href="https://www.catholicgallery.org/mass-reading/271126/" target="_blank" rel="noopener">Catholic</a> · <a href="https://www.missionstclare.com/english/November/whole/morning/27m.html" target="_blank" rel="noopener">Episcopal</a> · <a href="https://www.oca.org/readings/daily/2026/11/27" target="_blank" rel="noopener">Orthodox</a> · <a href="https://universalis.com/20261127/lauds.htm" target="_blank" rel="noopener">Divine Office</a> · <a href="https://www.hebcal.com/shabbat?geonameid=4887398&amp;M=on" target="_blank" rel="noopener">Hebcal</a> · <a href="https://www.sefaria.org/api/calendars?year=2026&amp;month=11&amp;day=27" target="_blank" rel="noopener">Sefaria calendar</a> · <a href="https://shubhpanchang.com/calendar/2026-11-27" target="_blank" rel="noopener">Panchang</a> · <a href="https://www.watmetta.org/news/Uposatha2026.pdf" target="_blank" rel="noopener">Uposatha</a> · <a href="https://prayasyougo.org" target="_blank" rel="noopener">Pray As You Go</a> · <a href="https://justfortodaymeditations.com/daily-recovery-readings-november-27/" target="_blank" rel="noopener">AA</a> · <a href="https://inwardoutward.org" target="_blank" rel="noopener">Inward/Outward</a></p><p class="note">Heads up: CAC's meditation pages haven't loaded thirty-one days running, Nouwen's daily meditation still can't be read on the web (about six weeks), and Verse &amp; Voice's year-ago issues haven't loaded since November 18. It may be time to swap them for different sources; just say the word.</p></footer>
+</div>
+<script>
+document.getElementById('open-all').addEventListener('click', () => document.querySelectorAll('details').forEach(d => d.open = true));
+document.getElementById('close-all').addEventListener('click', () => document.querySelectorAll('details').forEach(d => d.open = false));
+// Small Wikipedia photos next to each Voices of Wisdom name, fetched when the page opens (Johnny, 2026-10-04).
+// If Wikipedia can't be reached, the names simply show without photos.
+document.querySelectorAll('.sec-voices li > strong > a[href*="wikipedia.org/wiki/"], .sec-sources li > strong > a[href*="wikipedia.org/wiki/"]').forEach(a => {
+  const title = a.getAttribute('href').split('/wiki/')[1];
+  fetch('https://en.wikipedia.org/api/rest_v1/page/summary/' + title)
+    .then(r => r.ok ? r.json() : null)
+    .then(j => {
+      if (!j || !j.thumbnail || !j.thumbnail.source) return;
+      const img = document.createElement('img');
+      img.className = 'vw-thumb'; img.alt = ''; img.loading = 'lazy';
+      img.src = j.thumbnail.source;
+      img.onerror = () => img.remove();
+      a.closest('li').classList.add('has-thumb');
+      a.closest('li').prepend(img);
+    })
+    .catch(() => {});
+});
+</script>
+
+<script data-goatcounter="https://meditarisafari.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script><script>
+(function(){
+  function send(name){ if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({path: name, title: name, event: true}); }
+  document.addEventListener('toggle', function(e){
+    var d = e.target; if (!d.open || d.tagName !== 'DETAILS') return;
+    var t = d.querySelector('summary .sec-title, summary .src-name, summary');
+    send('open: ' + (t ? t.textContent.trim().slice(0, 60) : 'box'));
+  }, true);
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+    send('link: ' + a.textContent.trim().slice(0, 60));
+  });
+})();
+</script>
+
+</body>
+</html>
